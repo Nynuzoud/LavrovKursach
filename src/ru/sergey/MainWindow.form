@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ru.sergey.MainWindow">
+  <grid id="27dc6" binding="MainPanel" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="104" y="20" width="1642" height="473"/>
+    </constraints>
+    <properties/>
+    <border type="none">
+      <size top="20" left="20" bottom="20" right="20"/>
+    </border>
+    <children>
+      <component id="b2812" class="javax.swing.JLabel" binding="pokazateliLabel">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="150" height="10"/>
+            <preferred-size width="150" height="10"/>
+            <maximum-size width="150" height="10"/>
+          </grid>
+          <gridbag top="10" left="0" bottom="10" right="0" weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <font/>
+          <text value="Показатели"/>
+        </properties>
+      </component>
+      <component id="46f89" class="javax.swing.JLabel" binding="rashodGazaLabel">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="150" height="10"/>
+            <preferred-size width="150" height="10"/>
+          </grid>
+          <gridbag top="10" left="0" bottom="10" right="0" weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <text value="Расход природного газа"/>
+        </properties>
+      </component>
+      <component id="97966" class="javax.swing.JLabel" binding="seraLabel">
+        <constraints>
+          <grid row="1" column="3" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="10" left="0" bottom="10" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Содержание серы"/>
+        </properties>
+      </component>
+      <component id="295ae" class="javax.swing.JLabel" binding="koefLabel">
+        <constraints>
+          <grid row="1" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="10" left="0" bottom="10" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Коэффициенты"/>
+        </properties>
+      </component>
+      <component id="abfb6" class="javax.swing.JLabel" binding="rezervLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="268" height="30"/>
+          </grid>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <font size="10" style="0"/>
+          <text value="Резерв по расходу природного газа в целом по цеху, м3/ч"/>
+        </properties>
+      </component>
+      <component id="65d92" class="javax.swing.JLabel" binding="vBazovomPeriodLabel">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <font size="10" style="0"/>
+          <text value="В базовом периоде"/>
+        </properties>
+      </component>
+      <component id="430cf" class="javax.swing.JLabel" binding="seraVChuguneLabel">
+        <constraints>
+          <grid row="2" column="3" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font size="10" style="0"/>
+          <text value="В чугуне в базовом периоде"/>
+        </properties>
+      </component>
+      <component id="34d9" class="javax.swing.JLabel" binding="izmPrChugPGLabel">
+        <constraints>
+          <grid row="2" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font size="10" style="0"/>
+          <text value="Изменение производства чугуна при изменении ПГ"/>
+        </properties>
+      </component>
+      <component id="78c80" class="javax.swing.JTextField" binding="rezervTextField">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="268" height="24"/>
+          </grid>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <margin top="0" left="5" bottom="0" right="5"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="3b3b4" class="javax.swing.JTextField" binding="vBazovomPeriodeTextField">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <margin top="0" left="5" bottom="0" right="5"/>
+        </properties>
+      </component>
+      <component id="a50c4" class="javax.swing.JTextField" binding="seraVChuguneTextField">
+        <constraints>
+          <grid row="3" column="3" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <margin top="0" left="5" bottom="0" right="5"/>
+        </properties>
+      </component>
+      <component id="ed171" class="javax.swing.JTextField" binding="izmPrChugPGTextField">
+        <constraints>
+          <grid row="3" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <margin top="0" left="5" bottom="0" right="5"/>
+        </properties>
+      </component>
+      <component id="d41e0" class="javax.swing.JLabel" binding="zapasLabel">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="268" height="16"/>
+          </grid>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <font size="10" style="0"/>
+          <text value="Запасы кокса по цеху, т/ч"/>
+        </properties>
+      </component>
+      <component id="8ef51" class="javax.swing.JLabel" binding="minLabel">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <font size="10" style="0"/>
+          <text value="Минимально допустимый"/>
+        </properties>
+      </component>
+      <component id="2a6b2" class="javax.swing.JLabel" binding="MinSeraLabel">
+        <constraints>
+          <grid row="4" column="3" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font size="10" style="0"/>
+          <text value="Минимально допустимое"/>
+        </properties>
+      </component>
+      <component id="8fb0f" class="javax.swing.JLabel" binding="izmPrChugKoksLabel">
+        <constraints>
+          <grid row="4" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font size="10" style="0"/>
+          <text value="Изменение производства чугуна при увеличении расхода кокса"/>
+        </properties>
+      </component>
+      <component id="bc600" class="javax.swing.JTextField" binding="zapasTextField">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="268" height="24"/>
+          </grid>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <margin top="0" left="5" bottom="0" right="5"/>
+        </properties>
+      </component>
+      <component id="ca1d3" class="javax.swing.JTextField" binding="minTextField">
+        <constraints>
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <margin top="0" left="5" bottom="0" right="5"/>
+        </properties>
+      </component>
+      <component id="40477" class="javax.swing.JTextField" binding="minSeraTextField">
+        <constraints>
+          <grid row="5" column="3" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <margin top="0" left="5" bottom="0" right="5"/>
+        </properties>
+      </component>
+      <component id="2f3d8" class="javax.swing.JTextField" binding="izmPrChugKoksTextField">
+        <constraints>
+          <grid row="5" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <margin top="0" left="5" bottom="0" right="5"/>
+        </properties>
+      </component>
+      <component id="da033" class="javax.swing.JLabel" binding="trebChugLabel">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="268" height="16"/>
+          </grid>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <font size="10" style="0"/>
+          <text value="Требуемое производство чугуна в цехе, т/ч"/>
+        </properties>
+      </component>
+      <component id="5b4cf" class="javax.swing.JLabel" binding="maxLabel">
+        <constraints>
+          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <font size="10" style="0"/>
+          <text value="Максимально допустимый"/>
+        </properties>
+      </component>
+      <component id="bd224" class="javax.swing.JLabel" binding="maxSeraLabel">
+        <constraints>
+          <grid row="6" column="3" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font size="10" style="0"/>
+          <text value="Максимально допустимое"/>
+        </properties>
+      </component>
+      <component id="e8ed" class="javax.swing.JLabel" binding="izmSeraPGLabel">
+        <constraints>
+          <grid row="6" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font size="10" style="0"/>
+          <text value="Изменение серы при увеличении расхода ПГ на 1 м3/ч"/>
+        </properties>
+      </component>
+      <component id="4bb0c" class="javax.swing.JTextField" binding="trebChugTextField">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="268" height="24"/>
+          </grid>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <margin top="0" left="5" bottom="0" right="5"/>
+        </properties>
+      </component>
+      <component id="f3f16" class="javax.swing.JTextField" binding="maxTextField">
+        <constraints>
+          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <margin top="0" left="5" bottom="0" right="5"/>
+        </properties>
+      </component>
+      <component id="dd604" class="javax.swing.JTextField" binding="maxSeraTextField">
+        <constraints>
+          <grid row="7" column="3" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <margin top="0" left="5" bottom="0" right="5"/>
+        </properties>
+      </component>
+      <component id="348d3" class="javax.swing.JTextField" binding="izmSeraPGTextField">
+        <constraints>
+          <grid row="7" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <margin top="0" left="5" bottom="0" right="5"/>
+        </properties>
+      </component>
+      <component id="4d858" class="javax.swing.JLabel" binding="izmSeraKoksLabel">
+        <constraints>
+          <grid row="8" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font size="10" style="0"/>
+          <text value="Изменение серы при увеличении расхода кокса на 1 кг/ч"/>
+        </properties>
+      </component>
+      <component id="cc5bc" class="javax.swing.JTextField" binding="izmSeraKoksTextField">
+        <constraints>
+          <grid row="9" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <margin top="0" left="5" bottom="0" right="5"/>
+        </properties>
+      </component>
+      <component id="8530e" class="javax.swing.JLabel" binding="izmSeraPrLabel">
+        <constraints>
+          <grid row="10" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font size="10" style="0"/>
+          <text value="Изменение серы при увеличении производительности печи на 1 т чуг/ч"/>
+        </properties>
+      </component>
+      <component id="aa4eb" class="javax.swing.JLabel" binding="otherLabel">
+        <constraints>
+          <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="10" left="0" bottom="10" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Другие параметры"/>
+        </properties>
+      </component>
+      <component id="4b913" class="javax.swing.JLabel" binding="proizvChugLabel">
+        <constraints>
+          <grid row="13" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font size="10" style="0"/>
+          <text value="Производительность по чугуну в базовом периоде"/>
+        </properties>
+      </component>
+      <component id="60847" class="javax.swing.JTextField" binding="proizvChugTextField">
+        <constraints>
+          <grid row="14" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <margin top="0" left="5" bottom="0" right="5"/>
+        </properties>
+      </component>
+      <component id="f81db" class="javax.swing.JLabel" binding="rashodKoksaLabel">
+        <constraints>
+          <grid row="15" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font size="10" style="0"/>
+          <text value="Расход кокса в базовом периоде"/>
+        </properties>
+      </component>
+      <component id="90f1c" class="javax.swing.JTextField" binding="rashodKoksaTextField">
+        <constraints>
+          <grid row="16" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <margin top="0" left="5" bottom="0" right="5"/>
+        </properties>
+      </component>
+      <component id="11f6f" class="javax.swing.JLabel" binding="ekvZameniLabel">
+        <constraints>
+          <grid row="17" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font size="10" style="0"/>
+          <text value="Эквивалент замены кокса"/>
+        </properties>
+      </component>
+      <component id="a3b18" class="javax.swing.JTextField" binding="ekvZameniTextField">
+        <constraints>
+          <grid row="18" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <margin top="0" left="5" bottom="0" right="5"/>
+        </properties>
+      </component>
+      <component id="3cc4c" class="javax.swing.JTextField" binding="izmSeraPrTextField">
+        <constraints>
+          <grid row="11" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <margin top="0" left="5" bottom="0" right="5"/>
+        </properties>
+      </component>
+      <component id="7e8cd" class="javax.swing.JLabel" binding="furnaceLabel">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font size="18"/>
+          <text value="Печь "/>
+        </properties>
+      </component>
+      <component id="69c4c" class="javax.swing.JLabel" binding="resultsLabel">
+        <constraints>
+          <grid row="12" column="3" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Расход природного газа после оптимизации"/>
+          <visible value="false"/>
+        </properties>
+      </component>
+      <component id="7eac5" class="javax.swing.JLabel" binding="resultFurnLabel1">
+        <constraints>
+          <grid row="14" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Печь 1:"/>
+          <visible value="false"/>
+        </properties>
+      </component>
+      <component id="6cf68" class="javax.swing.JLabel" binding="resultLabel1">
+        <constraints>
+          <grid row="14" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="5" bottom="0" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font style="0"/>
+          <text value="Label"/>
+          <visible value="false"/>
+        </properties>
+      </component>
+      <component id="bdce" class="javax.swing.JLabel" binding="resultFurnLabel2">
+        <constraints>
+          <grid row="16" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Печь 2:"/>
+          <visible value="false"/>
+        </properties>
+      </component>
+      <component id="b5265" class="javax.swing.JLabel" binding="resultLabel2">
+        <constraints>
+          <grid row="16" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="5" bottom="0" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font style="0"/>
+          <text value="Label"/>
+          <visible value="false"/>
+        </properties>
+      </component>
+      <component id="218a0" class="javax.swing.JLabel" binding="resultFurnLabel3">
+        <constraints>
+          <grid row="18" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Печь 3:"/>
+          <visible value="false"/>
+        </properties>
+      </component>
+      <component id="a3eaa" class="javax.swing.JLabel" binding="resultLabel3">
+        <constraints>
+          <grid row="18" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="5" bottom="0" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font style="0"/>
+          <text value="Label"/>
+          <visible value="false"/>
+        </properties>
+      </component>
+      <component id="7b838" class="javax.swing.JLabel" binding="resultFurnLabel4">
+        <constraints>
+          <grid row="14" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Печь 4:"/>
+          <visible value="false"/>
+        </properties>
+      </component>
+      <component id="90094" class="javax.swing.JLabel" binding="resultFurnLabel5">
+        <constraints>
+          <grid row="16" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Печь 5:"/>
+          <visible value="false"/>
+        </properties>
+      </component>
+      <component id="9cb9c" class="javax.swing.JLabel" binding="resultFurnLabel6">
+        <constraints>
+          <grid row="18" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Печь 6:"/>
+          <visible value="false"/>
+        </properties>
+      </component>
+      <component id="3627c" class="javax.swing.JLabel" binding="resultLabel4">
+        <constraints>
+          <grid row="14" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="5" bottom="0" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font style="0"/>
+          <text value="Label"/>
+          <visible value="false"/>
+        </properties>
+      </component>
+      <component id="b5eea" class="javax.swing.JLabel" binding="resultLabel5">
+        <constraints>
+          <grid row="16" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="5" bottom="0" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font style="0"/>
+          <text value="Label"/>
+          <visible value="false"/>
+        </properties>
+      </component>
+      <component id="e2d5b" class="javax.swing.JLabel" binding="resultLabel6">
+        <constraints>
+          <grid row="18" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="5" bottom="0" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font style="0"/>
+          <text value="Label"/>
+          <visible value="false"/>
+        </properties>
+      </component>
+      <component id="bf5df" class="javax.swing.JLabel" binding="resultFurnLabel7">
+        <constraints>
+          <grid row="14" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Печь 7:"/>
+          <visible value="false"/>
+        </properties>
+      </component>
+      <component id="3f6d3" class="javax.swing.JLabel" binding="resultFurnLabel8">
+        <constraints>
+          <grid row="16" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Печь 8:"/>
+          <visible value="false"/>
+        </properties>
+      </component>
+      <component id="b0cdb" class="javax.swing.JLabel" binding="resultLabel7">
+        <constraints>
+          <grid row="14" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="5" bottom="0" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font style="0"/>
+          <text value="Label"/>
+          <visible value="false"/>
+        </properties>
+      </component>
+      <component id="4d847" class="javax.swing.JLabel" binding="resultLabel8">
+        <constraints>
+          <grid row="16" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="5" bottom="0" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font style="0"/>
+          <text value="Label"/>
+          <visible value="false"/>
+        </properties>
+      </component>
+      <component id="748f9" class="javax.swing.JRadioButton" binding="furnaceRadioButton1">
+        <constraints>
+          <grid row="2" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <label value="Печь 1"/>
+          <text value="Печь 1"/>
+        </properties>
+      </component>
+      <component id="714c2" class="javax.swing.JRadioButton" binding="furnaceRadioButton2">
+        <constraints>
+          <grid row="3" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <label value="Печь 2"/>
+          <text value="Печь 2"/>
+        </properties>
+      </component>
+      <component id="2183a" class="javax.swing.JRadioButton" binding="furnaceRadioButton3">
+        <constraints>
+          <grid row="4" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <label value="Печь 3"/>
+          <text value="Печь 3"/>
+        </properties>
+      </component>
+      <component id="b87e7" class="javax.swing.JRadioButton" binding="furnaceRadioButton4">
+        <constraints>
+          <grid row="5" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <label value="Печь 4"/>
+          <text value="Печь 4"/>
+        </properties>
+      </component>
+      <component id="56a63" class="javax.swing.JRadioButton" binding="furnaceRadioButton5">
+        <constraints>
+          <grid row="6" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <label value="Печь 5"/>
+          <text value="Печь 5"/>
+        </properties>
+      </component>
+      <component id="b68b6" class="javax.swing.JRadioButton" binding="furnaceRadioButton6">
+        <constraints>
+          <grid row="7" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <label value="Печь 6"/>
+          <text value="Печь 6"/>
+        </properties>
+      </component>
+      <component id="86431" class="javax.swing.JRadioButton" binding="furnaceRadioButton7">
+        <constraints>
+          <grid row="8" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <label value="Печь 7"/>
+          <text value="Печь 7"/>
+        </properties>
+      </component>
+      <component id="c7ef9" class="javax.swing.JRadioButton" binding="furnaceRadioButton8">
+        <constraints>
+          <grid row="9" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <label value="Печь 8"/>
+          <text value="Печь 8"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+  <buttonGroups>
+    <group name="buttonGroup">
+      <member id="2183a"/>
+      <member id="2183a"/>
+      <member id="b68b6"/>
+      <member id="56a63"/>
+      <member id="b87e7"/>
+      <member id="748f9"/>
+      <member id="714c2"/>
+      <member id="c7ef9"/>
+      <member id="86431"/>
+    </group>
+  </buttonGroups>
+</form>
