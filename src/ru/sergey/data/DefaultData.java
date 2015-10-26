@@ -97,6 +97,10 @@ public class DefaultData {
         return defaultArrayList;
     }
 
+    public static void setDefaultArrayList(ArrayList<HashMap<String, Double>> defaultArrayList) {
+        DefaultData.defaultArrayList = defaultArrayList;
+    }
+
     private static ArrayList<HashMap<String, Double>> defaultArrayList;
 
     public void createDefaultData() {

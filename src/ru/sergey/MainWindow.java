@@ -5,6 +5,7 @@ import ru.sergey.data.DefaultData;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainWindow extends JFrame {
@@ -78,6 +79,9 @@ public class MainWindow extends JFrame {
     //init classes
     DefaultData defaultData = new DefaultData();
 
+    //current furnace
+    private static int currentFurnace;
+
     public void MainForm() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(1150, 430);
@@ -100,7 +104,7 @@ public class MainWindow extends JFrame {
         defaultData.createDefaultData();
 
         setDefaultDataToFurnaces(1);
-
+        currentFurnace = 1;
     }
 
     class RadioButtonListener implements ActionListener {
@@ -112,6 +116,7 @@ public class MainWindow extends JFrame {
                 setDefaultDataToFurnaces(1);
             } else if (button == furnaceRadioButton2) {
                 setDefaultDataToFurnaces(2);
+                savePreviousFurnaceData(currentFurnace);
             } else if (button == furnaceRadioButton3) {
                 setDefaultDataToFurnaces(3);
             } else if (button == furnaceRadioButton4) {
@@ -128,8 +133,17 @@ public class MainWindow extends JFrame {
         }
     }
 
+    private void savePreviousFurnaceData(int currentFurnace) {
+        int currentFurnaceIndex = currentFurnace - 1;
+        ArrayList<HashMap<String, Double>> arrayList = DefaultData.getDefaultArrayList();
+        HashMap<String, Double> hashMap = new HashMap<>();
+        hashMap.put("rashodPGBase"+currentFurnace, Double.valueOf(vBazovomPeriodeTextField.getText()));
+        arrayList.set(currentFurnaceIndex, hashMap);
+    }
+
     private void setDefaultDataToFurnaces(int furnaceNumber) {
-        HashMap<String, Double> furnaceHashMap = DefaultData.getDefaultArrayList().get(furnaceNumber - 1);
+        int furnaceNumberIndex = furnaceNumber - 1;
+        HashMap<String, Double> furnaceHashMap = DefaultData.getDefaultArrayList().get(furnaceNumberIndex);
         vBazovomPeriodeTextField.setText(String.valueOf(furnaceHashMap.get("rashodPGBase"+furnaceNumber)));
         minTextField.setText(String.valueOf(furnaceHashMap.get("minRashodPG")));
         maxTextField.setText(String.valueOf(furnaceHashMap.get("maxRashodPG")));
