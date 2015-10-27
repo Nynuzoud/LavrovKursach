@@ -2,10 +2,10 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ru.sergey.MainWindow">
   <grid id="27dc6" binding="MainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="104" y="20" width="1642" height="473"/>
+      <xy x="104" y="20" width="1642" height="513"/>
     </constraints>
     <properties/>
-    <border type="none">
+    <border type="empty">
       <size top="20" left="20" bottom="20" right="20"/>
     </border>
     <children>

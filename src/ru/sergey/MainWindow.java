@@ -75,6 +75,11 @@ public class MainWindow extends JFrame {
     private JRadioButton furnaceRadioButton6;
     private JRadioButton furnaceRadioButton7;
     private JRadioButton furnaceRadioButton8;
+    private JMenuBar menuBar;
+    private JMenu fileMenu;
+    private JMenuItem openItem;
+    private JMenuItem saveItem;
+    private JMenuItem closeItem;
 
     //init classes
     DefaultData defaultData = new DefaultData();
@@ -84,9 +89,26 @@ public class MainWindow extends JFrame {
 
     public void MainForm() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(1150, 430);
-        add(MainPanel);
 
+        menuBar = new JMenuBar();
+
+        //build the File menu
+        fileMenu = new JMenu("Файл");
+        openItem = new JMenuItem("Открыть");
+        saveItem = new JMenuItem("Сохранить..");
+        closeItem = new JMenuItem("Закрыть");
+        fileMenu.add(openItem);
+        fileMenu.add(saveItem);
+        fileMenu.add(closeItem);
+
+        // add menus to menubar
+        menuBar.add(fileMenu);
+
+        // put the menubar on the frame
+        setJMenuBar(menuBar);
+
+        setSize(1150, 500);
+        add(MainPanel);
         setVisible(true);
 
         furnaceRadioButton1.setSelected(true);
@@ -113,21 +135,36 @@ public class MainWindow extends JFrame {
         public void actionPerformed(ActionEvent e) {
             JRadioButton button = (JRadioButton) e.getSource();
             if(button == furnaceRadioButton1) {
+                savePreviousFurnaceData(currentFurnace);
+                currentFurnace = 1;
                 setDefaultDataToFurnaces(1);
             } else if (button == furnaceRadioButton2) {
-                setDefaultDataToFurnaces(2);
                 savePreviousFurnaceData(currentFurnace);
+                currentFurnace = 2;
+                setDefaultDataToFurnaces(2);
             } else if (button == furnaceRadioButton3) {
+                savePreviousFurnaceData(currentFurnace);
+                currentFurnace = 3;
                 setDefaultDataToFurnaces(3);
             } else if (button == furnaceRadioButton4) {
+                savePreviousFurnaceData(currentFurnace);
+                currentFurnace = 4;
                 setDefaultDataToFurnaces(4);
             } else if (button == furnaceRadioButton5) {
+                savePreviousFurnaceData(currentFurnace);
+                currentFurnace = 5;
                 setDefaultDataToFurnaces(5);
             } else if (button == furnaceRadioButton6) {
+                savePreviousFurnaceData(currentFurnace);
+                currentFurnace = 6;
                 setDefaultDataToFurnaces(6);
             } else if (button == furnaceRadioButton7) {
+                savePreviousFurnaceData(currentFurnace);
+                currentFurnace = 7;
                 setDefaultDataToFurnaces(7);
             } else if (button == furnaceRadioButton8) {
+                savePreviousFurnaceData(currentFurnace);
+                currentFurnace = 8;
                 setDefaultDataToFurnaces(8);
             }
         }
@@ -138,7 +175,24 @@ public class MainWindow extends JFrame {
         ArrayList<HashMap<String, Double>> arrayList = DefaultData.getDefaultArrayList();
         HashMap<String, Double> hashMap = new HashMap<>();
         hashMap.put("rashodPGBase"+currentFurnace, Double.valueOf(vBazovomPeriodeTextField.getText()));
+        hashMap.put("minRashodPG", Double.valueOf(minTextField.getText()));
+        hashMap.put("maxRashodPG", Double.valueOf(maxTextField.getText()));
+        hashMap.put("rezervPG", Double.valueOf(rezervTextField.getText()));
+        hashMap.put("zapasKoks", Double.valueOf(zapasTextField.getText()));
+        hashMap.put("trebProizvChug", Double.valueOf(trebChugTextField.getText()));
+        hashMap.put("sodSiChugBase"+currentFurnace, Double.valueOf(seraVChuguneTextField.getText()));
+        hashMap.put("minSi", Double.valueOf(minSeraTextField.getText()));
+        hashMap.put("maxSi", Double.valueOf(maxSeraTextField.getText()));
+        hashMap.put("izmChugPG"+currentFurnace, Double.valueOf(izmPrChugPGTextField.getText()));
+        hashMap.put("izmChugKoks"+currentFurnace, Double.valueOf(izmPrChugKoksTextField.getText()));
+        hashMap.put("izmSiPG"+currentFurnace, Double.valueOf(izmSeraPGTextField.getText()));
+        hashMap.put("izmSiKoks"+currentFurnace, Double.valueOf(izmSeraKoksTextField.getText()));
+        hashMap.put("izmSiProizv"+currentFurnace, Double.valueOf(izmSeraPrTextField.getText()));
+        hashMap.put("proizvChugBase"+currentFurnace, Double.valueOf(proizvChugTextField.getText()));
+        hashMap.put("rashodKoksaBase"+currentFurnace, Double.valueOf(rashodKoksaTextField.getText()));
+        hashMap.put("ekvZamKoksaBase"+currentFurnace, Double.valueOf(ekvZameniTextField.getText()));
         arrayList.set(currentFurnaceIndex, hashMap);
+        DefaultData.setDefaultArrayList(arrayList);
     }
 
     private void setDefaultDataToFurnaces(int furnaceNumber) {
