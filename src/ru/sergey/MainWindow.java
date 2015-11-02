@@ -1,6 +1,7 @@
 package ru.sergey;
 
 import ru.sergey.data.DefaultData;
+import ru.sergey.data.SaveData;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -83,6 +84,7 @@ public class MainWindow extends JFrame {
 
     //init classes
     DefaultData defaultData = new DefaultData();
+    SaveData saveData = new SaveData();
 
     //current furnace
     private static int currentFurnace;
@@ -106,6 +108,10 @@ public class MainWindow extends JFrame {
 
         // put the menubar on the frame
         setJMenuBar(menuBar);
+
+        saveItem.addActionListener(e -> {
+            saveData.saveItemAction();
+        });
 
         setSize(1150, 500);
         add(MainPanel);
