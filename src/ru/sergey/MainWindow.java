@@ -129,7 +129,6 @@ public class MainWindow extends JFrame {
         File file = new File(Preferences.getPreferences.FILE_DESTINATION);
         if(file.exists()) {
             isFileExists = true;
-            System.out.println("File exists");
         }
 
         return isFileExists;
