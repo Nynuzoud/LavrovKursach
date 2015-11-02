@@ -181,14 +181,14 @@ public class MainWindow extends JFrame {
         ArrayList<HashMap<String, Double>> arrayList = DefaultData.getDefaultArrayList();
         HashMap<String, Double> hashMap = new HashMap<>();
         hashMap.put("rashodPGBase"+currentFurnace, Double.valueOf(vBazovomPeriodeTextField.getText()));
-        hashMap.put("minRashodPG", Double.valueOf(minTextField.getText()));
-        hashMap.put("maxRashodPG", Double.valueOf(maxTextField.getText()));
+        hashMap.put("minRashodPG"+currentFurnace, Double.valueOf(minTextField.getText()));
+        hashMap.put("maxRashodPG"+currentFurnace, Double.valueOf(maxTextField.getText()));
         hashMap.put("rezervPG", Double.valueOf(rezervTextField.getText()));
         hashMap.put("zapasKoks", Double.valueOf(zapasTextField.getText()));
         hashMap.put("trebProizvChug", Double.valueOf(trebChugTextField.getText()));
         hashMap.put("sodSiChugBase"+currentFurnace, Double.valueOf(seraVChuguneTextField.getText()));
-        hashMap.put("minSi", Double.valueOf(minSeraTextField.getText()));
-        hashMap.put("maxSi", Double.valueOf(maxSeraTextField.getText()));
+        hashMap.put("minSi"+currentFurnace, Double.valueOf(minSeraTextField.getText()));
+        hashMap.put("maxSi"+currentFurnace, Double.valueOf(maxSeraTextField.getText()));
         hashMap.put("izmChugPG"+currentFurnace, Double.valueOf(izmPrChugPGTextField.getText()));
         hashMap.put("izmChugKoks"+currentFurnace, Double.valueOf(izmPrChugKoksTextField.getText()));
         hashMap.put("izmSiPG"+currentFurnace, Double.valueOf(izmSeraPGTextField.getText()));
@@ -205,16 +205,16 @@ public class MainWindow extends JFrame {
         int furnaceNumberIndex = furnaceNumber - 1;
         HashMap<String, Double> furnaceHashMap = DefaultData.getDefaultArrayList().get(furnaceNumberIndex);
         vBazovomPeriodeTextField.setText(String.valueOf(furnaceHashMap.get("rashodPGBase"+furnaceNumber)));
-        minTextField.setText(String.valueOf(furnaceHashMap.get("minRashodPG")));
-        maxTextField.setText(String.valueOf(furnaceHashMap.get("maxRashodPG")));
+        minTextField.setText(String.valueOf(furnaceHashMap.get("minRashodPG"+furnaceNumber)));
+        maxTextField.setText(String.valueOf(furnaceHashMap.get("maxRashodPG"+furnaceNumber)));
 
         rezervTextField.setText(String.valueOf(furnaceHashMap.get("rezervPG")));
         zapasTextField.setText(String.valueOf(furnaceHashMap.get("zapasKoks")));
         trebChugTextField.setText(String.valueOf(furnaceHashMap.get("trebProizvChug")));
 
         seraVChuguneTextField.setText(String.valueOf(furnaceHashMap.get("sodSiChugBase"+furnaceNumber)));
-        minSeraTextField.setText(String.valueOf(furnaceHashMap.get("minSi")));
-        maxSeraTextField.setText(String.valueOf(furnaceHashMap.get("maxSi")));
+        minSeraTextField.setText(String.valueOf(furnaceHashMap.get("minSi"+furnaceNumber)));
+        maxSeraTextField.setText(String.valueOf(furnaceHashMap.get("maxSi"+furnaceNumber)));
 
         izmPrChugPGTextField.setText(String.valueOf(furnaceHashMap.get("izmChugPG"+furnaceNumber)));
         izmPrChugKoksTextField.setText(String.valueOf(furnaceHashMap.get("izmChugKoks"+furnaceNumber)));
