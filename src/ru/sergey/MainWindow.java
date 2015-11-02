@@ -1,13 +1,15 @@
 package ru.sergey;
 
+import ru.sergey.common.Preferences;
 import ru.sergey.data.DefaultData;
 import ru.sergey.data.SaveData;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
 
 public class MainWindow extends JFrame {
     private JPanel MainPanel;
@@ -91,7 +93,61 @@ public class MainWindow extends JFrame {
 
     public void MainForm() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                savePreviousFurnaceData(currentFurnace);
+                saveData.saveItemAction();
+            }
+        });
 
+        buildMenu();
+
+        setSize(1150, 500);
+        add(MainPanel);
+        setVisible(true);
+
+        furnaceRadioButton1.setSelected(true);
+
+        addListenersToRadioButtons();
+
+        if(!savedFileExists()) {
+            defaultData.createDefaultData();
+            setDefaultDataToFurnaces(1);
+        } else {
+            saveData.openItemAction();
+            setDefaultDataToFurnaces(1);
+        }
+
+        currentFurnace = 1;
+    }
+
+    private boolean savedFileExists() {
+        Boolean isFileExists = false;
+
+        File file = new File(Preferences.getPreferences.FILE_DESTINATION);
+        if(file.exists()) {
+            isFileExists = true;
+            System.out.println("File exists");
+        }
+
+        return isFileExists;
+    }
+
+    private void addListenersToRadioButtons() {
+        RadioButtonListener radioButtonListener = new RadioButtonListener();
+        furnaceRadioButton1.addActionListener(radioButtonListener);
+        furnaceRadioButton2.addActionListener(radioButtonListener);
+        furnaceRadioButton3.addActionListener(radioButtonListener);
+        furnaceRadioButton4.addActionListener(radioButtonListener);
+        furnaceRadioButton5.addActionListener(radioButtonListener);
+        furnaceRadioButton6.addActionListener(radioButtonListener);
+        furnaceRadioButton7.addActionListener(radioButtonListener);
+        furnaceRadioButton8.addActionListener(radioButtonListener);
+    }
+
+    private void buildMenu() {
         menuBar = new JMenuBar();
 
         //build the File menu
@@ -110,29 +166,14 @@ public class MainWindow extends JFrame {
         setJMenuBar(menuBar);
 
         saveItem.addActionListener(e -> {
+            savePreviousFurnaceData(currentFurnace);
             saveData.saveItemAction();
         });
 
-        setSize(1150, 500);
-        add(MainPanel);
-        setVisible(true);
-
-        furnaceRadioButton1.setSelected(true);
-
-        RadioButtonListener radioButtonListener = new RadioButtonListener();
-        furnaceRadioButton1.addActionListener(radioButtonListener);
-        furnaceRadioButton2.addActionListener(radioButtonListener);
-        furnaceRadioButton3.addActionListener(radioButtonListener);
-        furnaceRadioButton4.addActionListener(radioButtonListener);
-        furnaceRadioButton5.addActionListener(radioButtonListener);
-        furnaceRadioButton6.addActionListener(radioButtonListener);
-        furnaceRadioButton7.addActionListener(radioButtonListener);
-        furnaceRadioButton8.addActionListener(radioButtonListener);
-
-        defaultData.createDefaultData();
-
-        setDefaultDataToFurnaces(1);
-        currentFurnace = 1;
+        openItem.addActionListener(e -> {
+            saveData.openItemAction();
+            setDefaultDataToFurnaces(currentFurnace);
+        });
     }
 
     class RadioButtonListener implements ActionListener {
@@ -178,53 +219,53 @@ public class MainWindow extends JFrame {
 
     private void savePreviousFurnaceData(int currentFurnace) {
         int currentFurnaceIndex = currentFurnace - 1;
-        ArrayList<HashMap<String, Double>> arrayList = DefaultData.getDefaultArrayList();
-        HashMap<String, Double> hashMap = new HashMap<>();
-        hashMap.put("rashodPGBase"+currentFurnace, Double.valueOf(vBazovomPeriodeTextField.getText()));
-        hashMap.put("minRashodPG"+currentFurnace, Double.valueOf(minTextField.getText()));
-        hashMap.put("maxRashodPG"+currentFurnace, Double.valueOf(maxTextField.getText()));
-        hashMap.put("rezervPG", Double.valueOf(rezervTextField.getText()));
-        hashMap.put("zapasKoks", Double.valueOf(zapasTextField.getText()));
-        hashMap.put("trebProizvChug", Double.valueOf(trebChugTextField.getText()));
-        hashMap.put("sodSiChugBase"+currentFurnace, Double.valueOf(seraVChuguneTextField.getText()));
-        hashMap.put("minSi"+currentFurnace, Double.valueOf(minSeraTextField.getText()));
-        hashMap.put("maxSi"+currentFurnace, Double.valueOf(maxSeraTextField.getText()));
-        hashMap.put("izmChugPG"+currentFurnace, Double.valueOf(izmPrChugPGTextField.getText()));
-        hashMap.put("izmChugKoks"+currentFurnace, Double.valueOf(izmPrChugKoksTextField.getText()));
-        hashMap.put("izmSiPG"+currentFurnace, Double.valueOf(izmSeraPGTextField.getText()));
-        hashMap.put("izmSiKoks"+currentFurnace, Double.valueOf(izmSeraKoksTextField.getText()));
-        hashMap.put("izmSiProizv"+currentFurnace, Double.valueOf(izmSeraPrTextField.getText()));
-        hashMap.put("proizvChugBase"+currentFurnace, Double.valueOf(proizvChugTextField.getText()));
-        hashMap.put("rashodKoksaBase"+currentFurnace, Double.valueOf(rashodKoksaTextField.getText()));
-        hashMap.put("ekvZamKoksaBase"+currentFurnace, Double.valueOf(ekvZameniTextField.getText()));
-        arrayList.set(currentFurnaceIndex, hashMap);
-        DefaultData.setDefaultArrayList(arrayList);
+
+        double[][] array = DefaultData.getDefaultArray();
+
+        array[currentFurnaceIndex][0] = Double.valueOf(vBazovomPeriodeTextField.getText());
+        array[currentFurnaceIndex][1] = Double.valueOf(minTextField.getText());
+        array[currentFurnaceIndex][2] = Double.valueOf(maxTextField.getText());
+        array[currentFurnaceIndex][3] = Double.valueOf(rashodKoksaTextField.getText());
+        array[currentFurnaceIndex][4] = Double.valueOf(ekvZameniTextField.getText());
+        array[currentFurnaceIndex][5] = Double.valueOf(proizvChugTextField.getText());
+        array[currentFurnaceIndex][6] = Double.valueOf(seraVChuguneTextField.getText());
+        array[currentFurnaceIndex][7] = Double.valueOf(minSeraTextField.getText());
+        array[currentFurnaceIndex][8] = Double.valueOf(maxSeraTextField.getText());
+        array[currentFurnaceIndex][9] = Double.valueOf(izmPrChugPGTextField.getText());
+        array[currentFurnaceIndex][10] = Double.valueOf(izmPrChugKoksTextField.getText());
+        array[currentFurnaceIndex][11] = Double.valueOf(izmSeraPGTextField.getText());
+        array[currentFurnaceIndex][12] = Double.valueOf(izmSeraKoksTextField.getText());
+        array[currentFurnaceIndex][13] = Double.valueOf(izmSeraPrTextField.getText());
+
+        array[8][0] = Double.valueOf(rezervTextField.getText());
+        array[8][1] = Double.valueOf(zapasTextField.getText());
+        array[8][2] = Double.valueOf(trebChugTextField.getText());
+
+        DefaultData.setDefaultArray(array);
     }
 
     private void setDefaultDataToFurnaces(int furnaceNumber) {
-        int furnaceNumberIndex = furnaceNumber - 1;
-        HashMap<String, Double> furnaceHashMap = DefaultData.getDefaultArrayList().get(furnaceNumberIndex);
-        vBazovomPeriodeTextField.setText(String.valueOf(furnaceHashMap.get("rashodPGBase"+furnaceNumber)));
-        minTextField.setText(String.valueOf(furnaceHashMap.get("minRashodPG"+furnaceNumber)));
-        maxTextField.setText(String.valueOf(furnaceHashMap.get("maxRashodPG"+furnaceNumber)));
+        int currentFurnaceIndex = furnaceNumber - 1;
 
-        rezervTextField.setText(String.valueOf(furnaceHashMap.get("rezervPG")));
-        zapasTextField.setText(String.valueOf(furnaceHashMap.get("zapasKoks")));
-        trebChugTextField.setText(String.valueOf(furnaceHashMap.get("trebProizvChug")));
+        double[][] array = DefaultData.getDefaultArray();
+        vBazovomPeriodeTextField.setText(String.valueOf(array[currentFurnaceIndex][0]));
+        minTextField.setText(String.valueOf(array[currentFurnaceIndex][1]));
+        maxTextField.setText(String.valueOf(array[currentFurnaceIndex][2]));
+        rashodKoksaTextField.setText(String.valueOf(array[currentFurnaceIndex][3]));
+        ekvZameniTextField.setText(String.valueOf(array[currentFurnaceIndex][4]));
+        proizvChugTextField.setText(String.valueOf(array[currentFurnaceIndex][5]));
+        seraVChuguneTextField.setText(String.valueOf(array[currentFurnaceIndex][6]));
+        minSeraTextField.setText(String.valueOf(array[currentFurnaceIndex][7]));
+        maxSeraTextField.setText(String.valueOf(array[currentFurnaceIndex][8]));
+        izmPrChugPGTextField.setText(String.valueOf(array[currentFurnaceIndex][9]));
+        izmPrChugKoksTextField.setText(String.valueOf(array[currentFurnaceIndex][10]));
+        izmSeraPGTextField.setText(String.valueOf(array[currentFurnaceIndex][11]));
+        izmSeraKoksTextField.setText(String.valueOf(array[currentFurnaceIndex][12]));
+        izmSeraPrTextField.setText(String.valueOf(array[currentFurnaceIndex][13]));
 
-        seraVChuguneTextField.setText(String.valueOf(furnaceHashMap.get("sodSiChugBase"+furnaceNumber)));
-        minSeraTextField.setText(String.valueOf(furnaceHashMap.get("minSi"+furnaceNumber)));
-        maxSeraTextField.setText(String.valueOf(furnaceHashMap.get("maxSi"+furnaceNumber)));
-
-        izmPrChugPGTextField.setText(String.valueOf(furnaceHashMap.get("izmChugPG"+furnaceNumber)));
-        izmPrChugKoksTextField.setText(String.valueOf(furnaceHashMap.get("izmChugKoks"+furnaceNumber)));
-        izmSeraPGTextField.setText(String.valueOf(furnaceHashMap.get("izmSiPG"+furnaceNumber)));
-        izmSeraKoksTextField.setText(String.valueOf(furnaceHashMap.get("izmSiKoks"+furnaceNumber)));
-        izmSeraPrTextField.setText(String.valueOf(furnaceHashMap.get("izmSiProizv"+furnaceNumber)));
-
-        proizvChugTextField.setText(String.valueOf(furnaceHashMap.get("proizvChugBase"+furnaceNumber)));
-        rashodKoksaTextField.setText(String.valueOf(furnaceHashMap.get("rashodKoksaBase"+furnaceNumber)));
-        ekvZameniTextField.setText(String.valueOf(furnaceHashMap.get("ekvZamKoksaBase"+furnaceNumber)));
+        rezervTextField.setText(String.valueOf(array[8][0]));
+        zapasTextField.setText(String.valueOf(array[8][1]));
+        trebChugTextField.setText(String.valueOf(array[8][2]));
 
         furnaceLabel.setText("Печь "+furnaceNumber);
     }

@@ -1,9 +1,6 @@
 package ru.sergey.data;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class DefaultData {
     public final static int RASHOD_PG_BASE1 = 15000;
     public final static int RASHOD_PG_BASE2 = 17000;
@@ -93,185 +90,148 @@ public class DefaultData {
     public final static int ZAPAS_KOKS = 520;
     public final static int TREB_PROIZV_CHUG = 1100;
 
-    public static ArrayList<HashMap<String, Double>> getDefaultArrayList() {
-        return defaultArrayList;
+    public static double[][] getDefaultArray() {
+        return defaultArray;
     }
 
-    public static void setDefaultArrayList(ArrayList<HashMap<String, Double>> defaultArrayList) {
-        DefaultData.defaultArrayList = defaultArrayList;
+    public static void setDefaultArray(double[][] defaultArray) {
+        DefaultData.defaultArray = defaultArray;
     }
 
-    private static ArrayList<HashMap<String, Double>> defaultArrayList;
+    private static double[][] defaultArray;
 
     public void createDefaultData() {
-        defaultArrayList = new ArrayList<>();
-        HashMap<String, Double> hashMap = new HashMap<>();
+        defaultArray = new double[9][14];
 
         //Furnace 1
-        hashMap.put("rashodPGBase1", (double) RASHOD_PG_BASE1);
-        hashMap.put("minRashodPG1", (double) MIN_RASHOD_PG);
-        hashMap.put("maxRashodPG1", (double) MAX_RASHOD_PG);
-        hashMap.put("rashodKoksaBase1", RASHOD_KOKSA_BASE1);
-        hashMap.put("ekvZamKoksaBase1", EKV_ZAM_KOKSA_BASE1);
-        hashMap.put("proizvChugBase1", PROIZV_CHUG_BASE1);
-        hashMap.put("sodSiChugBase1", SOD_SI_CHUG_BASE1);
-        hashMap.put("minSi1", MIN_SI);
-        hashMap.put("maxSi1", MAX_SI);
-        hashMap.put("izmChugPG1", IZM_CHUG_PG1);
-        hashMap.put("izmChugKoks1", IZM_CHUG_KOKS1);
-        hashMap.put("izmSiPG1", IZM_SI_PG1);
-        hashMap.put("izmSiKoks1", IZM_SI_KOKS1);
-        hashMap.put("izmSiProizv1", IZM_SI_PROIZV1);
-        hashMap.put("rezervPG", (double) REZERV_PG);
-        hashMap.put("zapasKoks", (double) ZAPAS_KOKS);
-        hashMap.put("trebProizvChug", (double) TREB_PROIZV_CHUG);
-        defaultArrayList.add(hashMap);
+        defaultArray[0][0] = (double) RASHOD_PG_BASE1;
+        defaultArray[0][1] = (double) MIN_RASHOD_PG;
+        defaultArray[0][2] = (double) MAX_RASHOD_PG;
+        defaultArray[0][3] =  RASHOD_KOKSA_BASE1;
+        defaultArray[0][4] = EKV_ZAM_KOKSA_BASE1;
+        defaultArray[0][5] = PROIZV_CHUG_BASE1;
+        defaultArray[0][6] = SOD_SI_CHUG_BASE1;
+        defaultArray[0][7] = MIN_SI;
+        defaultArray[0][8] = MAX_SI;
+        defaultArray[0][9] = IZM_CHUG_PG1;
+        defaultArray[0][10] = IZM_CHUG_KOKS1;
+        defaultArray[0][11] = IZM_SI_PG1;
+        defaultArray[0][12] = IZM_SI_KOKS1;
+        defaultArray[0][13] = IZM_SI_PROIZV1;
 
         //Furnace 2
-        hashMap = new HashMap<>();
-        hashMap.put("rashodPGBase2", (double) RASHOD_PG_BASE2);
-        hashMap.put("minRashodPG2", (double) MIN_RASHOD_PG);
-        hashMap.put("maxRashodPG2", (double) MAX_RASHOD_PG);
-        hashMap.put("rashodKoksaBase2", RASHOD_KOKSA_BASE2);
-        hashMap.put("ekvZamKoksaBase2", EKV_ZAM_KOKSA_BASE2);
-        hashMap.put("proizvChugBase2", PROIZV_CHUG_BASE2);
-        hashMap.put("sodSiChugBase2", SOD_SI_CHUG_BASE2);
-        hashMap.put("minSi2", MIN_SI);
-        hashMap.put("maxSi2", MAX_SI);
-        hashMap.put("izmChugPG2", IZM_CHUG_PG2);
-        hashMap.put("izmChugKoks2", IZM_CHUG_KOKS2);
-        hashMap.put("izmSiPG2", IZM_SI_PG2);
-        hashMap.put("izmSiKoks2", IZM_SI_KOKS2);
-        hashMap.put("izmSiProizv2", IZM_SI_PROIZV2);
-        hashMap.put("rezervPG", (double) REZERV_PG);
-        hashMap.put("zapasKoks", (double) ZAPAS_KOKS);
-        hashMap.put("trebProizvChug", (double) TREB_PROIZV_CHUG);
-        defaultArrayList.add(hashMap);
+        defaultArray[1][0] = (double) RASHOD_PG_BASE2;
+        defaultArray[1][1] = (double) MIN_RASHOD_PG;
+        defaultArray[1][2] = (double) MAX_RASHOD_PG;
+        defaultArray[1][3] = RASHOD_KOKSA_BASE2;
+        defaultArray[1][4] = EKV_ZAM_KOKSA_BASE2;
+        defaultArray[1][5] = PROIZV_CHUG_BASE2;
+        defaultArray[1][6] = SOD_SI_CHUG_BASE2;
+        defaultArray[1][7] = MIN_SI;
+        defaultArray[1][8] = MAX_SI;
+        defaultArray[1][9] = IZM_CHUG_PG2;
+        defaultArray[1][10] = IZM_CHUG_KOKS2;
+        defaultArray[1][11] = IZM_SI_PG2;
+        defaultArray[1][12] = IZM_SI_KOKS2;
+        defaultArray[1][13] = IZM_SI_PROIZV2;
 
         //Furnace 3
-        hashMap = new HashMap<>();
-        hashMap.put("rashodPGBase3", (double) RASHOD_PG_BASE3);
-        hashMap.put("minRashodPG3", (double) MIN_RASHOD_PG);
-        hashMap.put("maxRashodPG3", (double) MAX_RASHOD_PG);
-        hashMap.put("rashodKoksaBase3", RASHOD_KOKSA_BASE3);
-        hashMap.put("ekvZamKoksaBase3", EKV_ZAM_KOKSA_BASE3);
-        hashMap.put("proizvChugBase3", PROIZV_CHUG_BASE3);
-        hashMap.put("sodSiChugBase3", SOD_SI_CHUG_BASE3);
-        hashMap.put("minSi3", MIN_SI);
-        hashMap.put("maxSi3", MAX_SI);
-        hashMap.put("izmChugPG3", IZM_CHUG_PG3);
-        hashMap.put("izmChugKoks3", IZM_CHUG_KOKS3);
-        hashMap.put("izmSiPG3", IZM_SI_PG3);
-        hashMap.put("izmSiKoks3", IZM_SI_KOKS3);
-        hashMap.put("izmSiProizv3", IZM_SI_PROIZV3);
-        hashMap.put("rezervPG", (double) REZERV_PG);
-        hashMap.put("zapasKoks", (double) ZAPAS_KOKS);
-        hashMap.put("trebProizvChug", (double) TREB_PROIZV_CHUG);
-        defaultArrayList.add(hashMap);
+        defaultArray[2][0] = (double) RASHOD_PG_BASE3;
+        defaultArray[2][1] = (double) MIN_RASHOD_PG;
+        defaultArray[2][2] = (double) MAX_RASHOD_PG;
+        defaultArray[2][3] = RASHOD_KOKSA_BASE3;
+        defaultArray[2][4] = EKV_ZAM_KOKSA_BASE3;
+        defaultArray[2][5] = PROIZV_CHUG_BASE3;
+        defaultArray[2][6] = SOD_SI_CHUG_BASE3;
+        defaultArray[2][7] = MIN_SI;
+        defaultArray[2][8] = MAX_SI;
+        defaultArray[2][9] = IZM_CHUG_PG3;
+        defaultArray[2][10] = IZM_CHUG_KOKS3;
+        defaultArray[2][11] = IZM_SI_PG3;
+        defaultArray[2][12] = IZM_SI_KOKS3;
+        defaultArray[2][13] = IZM_SI_PROIZV3;
 
         //Furnace 4
-        hashMap = new HashMap<>();
-        hashMap.put("rashodPGBase4", (double) RASHOD_PG_BASE4);
-        hashMap.put("minRashodPG4", (double) MIN_RASHOD_PG);
-        hashMap.put("maxRashodPG4", (double) MAX_RASHOD_PG);
-        hashMap.put("rashodKoksaBase4", RASHOD_KOKSA_BASE4);
-        hashMap.put("ekvZamKoksaBase4", EKV_ZAM_KOKSA_BASE4);
-        hashMap.put("proizvChugBase4", PROIZV_CHUG_BASE4);
-        hashMap.put("sodSiChugBase4", SOD_SI_CHUG_BASE4);
-        hashMap.put("minSi4", MIN_SI);
-        hashMap.put("maxSi4", MAX_SI);
-        hashMap.put("izmChugPG4", IZM_CHUG_PG4);
-        hashMap.put("izmChugKoks4", IZM_CHUG_KOKS4);
-        hashMap.put("izmSiPG4", IZM_SI_PG4);
-        hashMap.put("izmSiKoks4", IZM_SI_KOKS4);
-        hashMap.put("izmSiProizv4", IZM_SI_PROIZV4);
-        hashMap.put("rezervPG", (double) REZERV_PG);
-        hashMap.put("zapasKoks", (double) ZAPAS_KOKS);
-        hashMap.put("trebProizvChug", (double) TREB_PROIZV_CHUG);
-        defaultArrayList.add(hashMap);
+        defaultArray[3][0] = (double) RASHOD_PG_BASE4;
+        defaultArray[3][1] = (double) MIN_RASHOD_PG;
+        defaultArray[3][2] = (double) MAX_RASHOD_PG;
+        defaultArray[3][3] = RASHOD_KOKSA_BASE4;
+        defaultArray[3][4] = EKV_ZAM_KOKSA_BASE4;
+        defaultArray[3][5] = PROIZV_CHUG_BASE4;
+        defaultArray[3][6] = SOD_SI_CHUG_BASE4;
+        defaultArray[3][7] = MIN_SI;
+        defaultArray[3][8] = MAX_SI;
+        defaultArray[3][9] = IZM_CHUG_PG4;
+        defaultArray[3][10] = IZM_CHUG_KOKS4;
+        defaultArray[3][11] = IZM_SI_PG4;
+        defaultArray[3][12] = IZM_SI_KOKS4;
+        defaultArray[3][13] = IZM_SI_PROIZV4;
 
         //Furnace 5
-        hashMap = new HashMap<>();
-        hashMap.put("rashodPGBase5", (double) RASHOD_PG_BASE5);
-        hashMap.put("minRashodPG5", (double) MIN_RASHOD_PG);
-        hashMap.put("maxRashodPG5", (double) MAX_RASHOD_PG);
-        hashMap.put("rashodKoksaBase5", RASHOD_KOKSA_BASE5);
-        hashMap.put("ekvZamKoksaBase5", EKV_ZAM_KOKSA_BASE5);
-        hashMap.put("proizvChugBase5", PROIZV_CHUG_BASE5);
-        hashMap.put("sodSiChugBase5", SOD_SI_CHUG_BASE5);
-        hashMap.put("minSi5", MIN_SI);
-        hashMap.put("maxSi5", MAX_SI);
-        hashMap.put("izmChugPG5", IZM_CHUG_PG5);
-        hashMap.put("izmChugKoks5", IZM_CHUG_KOKS5);
-        hashMap.put("izmSiPG5", IZM_SI_PG5);
-        hashMap.put("izmSiKoks5", IZM_SI_KOKS5);
-        hashMap.put("izmSiProizv5", IZM_SI_PROIZV5);
-        hashMap.put("rezervPG", (double) REZERV_PG);
-        hashMap.put("zapasKoks", (double) ZAPAS_KOKS);
-        hashMap.put("trebProizvChug", (double) TREB_PROIZV_CHUG);
-        defaultArrayList.add(hashMap);
+        defaultArray[4][0] = (double) RASHOD_PG_BASE5;
+        defaultArray[4][1] = (double) MIN_RASHOD_PG;
+        defaultArray[4][2] = (double) MAX_RASHOD_PG;
+        defaultArray[4][3] = RASHOD_KOKSA_BASE5;
+        defaultArray[4][4] = EKV_ZAM_KOKSA_BASE5;
+        defaultArray[4][5] = PROIZV_CHUG_BASE5;
+        defaultArray[4][6] = SOD_SI_CHUG_BASE5;
+        defaultArray[4][7] = MIN_SI;
+        defaultArray[4][8] = MAX_SI;
+        defaultArray[4][9] = IZM_CHUG_PG5;
+        defaultArray[4][10] = IZM_CHUG_KOKS5;
+        defaultArray[4][11] = IZM_SI_PG5;
+        defaultArray[4][12] = IZM_SI_KOKS5;
+        defaultArray[4][13] = IZM_SI_PROIZV5;
 
         //Furnace 6
-        hashMap = new HashMap<>();
-        hashMap.put("rashodPGBase6", (double) RASHOD_PG_BASE6);
-        hashMap.put("minRashodPG6", (double) MIN_RASHOD_PG);
-        hashMap.put("maxRashodPG6", (double) MAX_RASHOD_PG);
-        hashMap.put("rashodKoksaBase6", RASHOD_KOKSA_BASE6);
-        hashMap.put("ekvZamKoksaBase6", EKV_ZAM_KOKSA_BASE6);
-        hashMap.put("proizvChugBase6", PROIZV_CHUG_BASE6);
-        hashMap.put("sodSiChugBase6", SOD_SI_CHUG_BASE6);
-        hashMap.put("minSi6", MIN_SI);
-        hashMap.put("maxSi6", MAX_SI);
-        hashMap.put("izmChugPG6", IZM_CHUG_PG6);
-        hashMap.put("izmChugKoks6", IZM_CHUG_KOKS6);
-        hashMap.put("izmSiPG6", IZM_SI_PG6);
-        hashMap.put("izmSiKoks6", IZM_SI_KOKS6);
-        hashMap.put("izmSiProizv6", IZM_SI_PROIZV6);
-        hashMap.put("rezervPG", (double) REZERV_PG);
-        hashMap.put("zapasKoks", (double) ZAPAS_KOKS);
-        hashMap.put("trebProizvChug", (double) TREB_PROIZV_CHUG);
-        defaultArrayList.add(hashMap);
+        defaultArray[5][0] = (double) RASHOD_PG_BASE6;
+        defaultArray[5][1] = (double) MIN_RASHOD_PG;
+        defaultArray[5][2] = (double) MAX_RASHOD_PG;
+        defaultArray[5][3] = RASHOD_KOKSA_BASE6;
+        defaultArray[5][4] = EKV_ZAM_KOKSA_BASE6;
+        defaultArray[5][5] = PROIZV_CHUG_BASE6;
+        defaultArray[5][6] = SOD_SI_CHUG_BASE6;
+        defaultArray[5][7] = MIN_SI;
+        defaultArray[5][8] = MAX_SI;
+        defaultArray[5][9] = IZM_CHUG_PG6;
+        defaultArray[5][10] = IZM_CHUG_KOKS6;
+        defaultArray[5][11] = IZM_SI_PG6;
+        defaultArray[5][12] = IZM_SI_KOKS6;
+        defaultArray[5][13] = IZM_SI_PROIZV6;
 
         //Furnace 7
-        hashMap = new HashMap<>();
-        hashMap.put("rashodPGBase7", (double) RASHOD_PG_BASE7);
-        hashMap.put("minRashodPG7", (double) MIN_RASHOD_PG);
-        hashMap.put("maxRashodPG7", (double) MAX_RASHOD_PG);
-        hashMap.put("rashodKoksaBase7", RASHOD_KOKSA_BASE7);
-        hashMap.put("ekvZamKoksaBase7", EKV_ZAM_KOKSA_BASE7);
-        hashMap.put("proizvChugBase7", PROIZV_CHUG_BASE7);
-        hashMap.put("sodSiChugBase7", SOD_SI_CHUG_BASE7);
-        hashMap.put("minSi7", MIN_SI);
-        hashMap.put("maxSi7", MAX_SI);
-        hashMap.put("izmChugPG7", IZM_CHUG_PG7);
-        hashMap.put("izmChugKoks7", IZM_CHUG_KOKS7);
-        hashMap.put("izmSiPG7", IZM_SI_PG7);
-        hashMap.put("izmSiKoks7", IZM_SI_KOKS7);
-        hashMap.put("izmSiProizv7", IZM_SI_PROIZV7);
-        hashMap.put("rezervPG", (double) REZERV_PG);
-        hashMap.put("zapasKoks", (double) ZAPAS_KOKS);
-        hashMap.put("trebProizvChug", (double) TREB_PROIZV_CHUG);
-        defaultArrayList.add(hashMap);
+        defaultArray[6][0] = (double) RASHOD_PG_BASE7;
+        defaultArray[6][1] = (double) MIN_RASHOD_PG;
+        defaultArray[6][2] = (double) MAX_RASHOD_PG;
+        defaultArray[6][3] = RASHOD_KOKSA_BASE7;
+        defaultArray[6][4] = EKV_ZAM_KOKSA_BASE7;
+        defaultArray[6][5] = PROIZV_CHUG_BASE7;
+        defaultArray[6][6] = SOD_SI_CHUG_BASE7;
+        defaultArray[6][7] = MIN_SI;
+        defaultArray[6][8] = MAX_SI;
+        defaultArray[6][9] = IZM_CHUG_PG7;
+        defaultArray[6][10] = IZM_CHUG_KOKS7;
+        defaultArray[6][11] = IZM_SI_PG7;
+        defaultArray[6][12] = IZM_SI_KOKS7;
+        defaultArray[6][13] = IZM_SI_PROIZV7;
 
         //Furnace 8
-        hashMap = new HashMap<>();
-        hashMap.put("rashodPGBase8", (double) RASHOD_PG_BASE8);
-        hashMap.put("minRashodPG8", (double) MIN_RASHOD_PG);
-        hashMap.put("maxRashodPG8", (double) MAX_RASHOD_PG);
-        hashMap.put("rashodKoksaBase8", RASHOD_KOKSA_BASE8);
-        hashMap.put("ekvZamKoksaBase8", EKV_ZAM_KOKSA_BASE8);
-        hashMap.put("proizvChugBase8", PROIZV_CHUG_BASE8);
-        hashMap.put("sodSiChugBase8", SOD_SI_CHUG_BASE8);
-        hashMap.put("minSi8", MIN_SI);
-        hashMap.put("maxSi8", MAX_SI);
-        hashMap.put("izmChugPG8", IZM_CHUG_PG8);
-        hashMap.put("izmChugKoks8", IZM_CHUG_KOKS8);
-        hashMap.put("izmSiPG8", IZM_SI_PG8);
-        hashMap.put("izmSiKoks8", IZM_SI_KOKS8);
-        hashMap.put("izmSiProizv8", IZM_SI_PROIZV8);
-        hashMap.put("rezervPG", (double) REZERV_PG);
-        hashMap.put("zapasKoks", (double) ZAPAS_KOKS);
-        hashMap.put("trebProizvChug", (double) TREB_PROIZV_CHUG);
-        defaultArrayList.add(hashMap);
+        defaultArray[7][0] = (double) RASHOD_PG_BASE8;
+        defaultArray[7][1] = (double) MIN_RASHOD_PG;
+        defaultArray[7][2] = (double) MAX_RASHOD_PG;
+        defaultArray[7][3] = RASHOD_KOKSA_BASE8;
+        defaultArray[7][4] = EKV_ZAM_KOKSA_BASE8;
+        defaultArray[7][5] = PROIZV_CHUG_BASE8;
+        defaultArray[7][6] = SOD_SI_CHUG_BASE8;
+        defaultArray[7][7] = MIN_SI;
+        defaultArray[7][8] = MAX_SI;
+        defaultArray[7][9] = IZM_CHUG_PG8;
+        defaultArray[7][10] = IZM_CHUG_KOKS8;
+        defaultArray[7][11] = IZM_SI_PG8;
+        defaultArray[7][12] = IZM_SI_KOKS8;
+        defaultArray[7][13] = IZM_SI_PROIZV8;
+        defaultArray[8][0] = (double) REZERV_PG;
+        defaultArray[8][1] = (double) ZAPAS_KOKS;
+        defaultArray[8][2] = (double) TREB_PROIZV_CHUG;
     }
 }
