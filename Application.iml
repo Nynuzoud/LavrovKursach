@@ -16,5 +16,18 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/json-simple-1.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="poi-3.13-20150929" level="project" />
+    <orderEntry type="library" name="poi-ooxml-3.13-20150929" level="project" />
+    <orderEntry type="library" name="xmlbeans-2.6.0" level="project" />
+    <orderEntry type="library" name="poi-ooxml-schemas-3.13-20150929" level="project" />
   </component>
 </module>
