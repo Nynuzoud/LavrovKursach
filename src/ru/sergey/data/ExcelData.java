@@ -1,20 +1,18 @@
-package ru.sergey.excel;
-
+package ru.sergey.data;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import ru.sergey.data.DefaultData;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class SendDataToExcel {
+public class ExcelData {
     public void sendData() {
-        FileInputStream file = null;
+        FileInputStream file;
         double[][] array = DefaultData.getDefaultArray();
         try {
             file = new FileInputStream(new File("optimize.xlsm"));

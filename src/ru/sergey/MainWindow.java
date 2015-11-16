@@ -2,8 +2,8 @@ package ru.sergey;
 
 import ru.sergey.common.Preferences;
 import ru.sergey.data.DefaultData;
+import ru.sergey.data.ExcelData;
 import ru.sergey.data.SaveData;
-import ru.sergey.excel.SendDataToExcel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -89,7 +89,7 @@ public class MainWindow extends JFrame {
     //init classes
     DefaultData defaultData = new DefaultData();
     SaveData saveData = new SaveData();
-    SendDataToExcel sendDataToExcel = new SendDataToExcel();
+    ExcelData excelData = new ExcelData();
 
     //current furnace
     private static int currentFurnace;
@@ -106,7 +106,7 @@ public class MainWindow extends JFrame {
         });
 
         calculate.addActionListener(e -> {
-            sendDataToExcel.sendData();
+            excelData.sendData();
         });
 
         buildMenu();
