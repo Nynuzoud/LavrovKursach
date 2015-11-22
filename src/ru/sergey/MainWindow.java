@@ -106,7 +106,15 @@ public class MainWindow extends JFrame {
         });
 
         calculate.addActionListener(e -> {
+            savePreviousFurnaceData(currentFurnace);
             excelData.sendData();
+            int[] result = excelData.getData();
+            if (result != null) {
+                setResult(result);
+                JOptionPane.showMessageDialog(MainPanel, "Решение найдено");
+            } else {
+                JOptionPane.showMessageDialog(MainPanel, "Для заданных ограничений нет решений");
+            }
         });
 
         buildMenu();
@@ -128,6 +136,34 @@ public class MainWindow extends JFrame {
         }
 
         currentFurnace = 1;
+    }
+
+    private void setResult(int[] result) {
+        resultsLabel.setVisible(true);
+        resultFurnLabel1.setVisible(true);
+        resultFurnLabel2.setVisible(true);
+        resultFurnLabel3.setVisible(true);
+        resultFurnLabel4.setVisible(true);
+        resultFurnLabel5.setVisible(true);
+        resultFurnLabel6.setVisible(true);
+        resultFurnLabel7.setVisible(true);
+        resultFurnLabel8.setVisible(true);
+        resultLabel1.setVisible(true);
+        resultLabel1.setText(String.valueOf(result[0]));
+        resultLabel2.setVisible(true);
+        resultLabel2.setText(String.valueOf(result[1]));
+        resultLabel3.setVisible(true);
+        resultLabel3.setText(String.valueOf(result[2]));
+        resultLabel4.setVisible(true);
+        resultLabel4.setText(String.valueOf(result[3]));
+        resultLabel5.setVisible(true);
+        resultLabel5.setText(String.valueOf(result[4]));
+        resultLabel6.setVisible(true);
+        resultLabel6.setText(String.valueOf(result[5]));
+        resultLabel7.setVisible(true);
+        resultLabel7.setText(String.valueOf(result[6]));
+        resultLabel8.setVisible(true);
+        resultLabel8.setText(String.valueOf(result[7]));
     }
 
     private boolean savedFileExists() {
