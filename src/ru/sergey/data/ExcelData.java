@@ -96,6 +96,10 @@ public class ExcelData {
             e.printStackTrace();
         }
 
+        if (result != null) {
+            DefaultData.setFurnaceResult(result);
+        }
+
         return result;
     }
 }

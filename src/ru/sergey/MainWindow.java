@@ -2,6 +2,7 @@ package ru.sergey;
 
 import ru.sergey.common.Preferences;
 import ru.sergey.data.DefaultData;
+import ru.sergey.data.Diagram;
 import ru.sergey.data.ExcelData;
 import ru.sergey.data.SaveData;
 
@@ -80,48 +81,27 @@ public class MainWindow extends JFrame {
     private JRadioButton furnaceRadioButton7;
     private JRadioButton furnaceRadioButton8;
     private JButton calculate;
-    private JMenuBar menuBar;
-    private JMenu fileMenu;
-    private JMenuItem openItem;
-    private JMenuItem saveItem;
-    private JMenuItem closeItem;
+    private JMenu tabMenu;
+    private JMenuItem diagramItem;
 
     //init classes
-    DefaultData defaultData = new DefaultData();
-    SaveData saveData = new SaveData();
-    ExcelData excelData = new ExcelData();
+    private DefaultData defaultData = new DefaultData();
+    private SaveData saveData = new SaveData();
+    private ExcelData excelData = new ExcelData();
 
     //current furnace
     private static int currentFurnace;
 
     public void MainForm() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                super.windowClosing(e);
-                savePreviousFurnaceData(currentFurnace);
-                saveData.saveItemAction();
-            }
-        });
 
-        calculate.addActionListener(e -> {
-            savePreviousFurnaceData(currentFurnace);
-            excelData.sendData();
-            int[] result = excelData.getData();
-            if (result != null) {
-                setResult(result);
-                JOptionPane.showMessageDialog(MainPanel, "Решение найдено");
-            } else {
-                JOptionPane.showMessageDialog(MainPanel, "Для заданных ограничений нет решений");
-            }
-        });
+        windowListener();
+
+        calculateActionListener();
 
         buildMenu();
 
-        setSize(1150, 500);
-        add(MainPanel);
-        setVisible(true);
+        buildWindow();
 
         furnaceRadioButton1.setSelected(true);
 
@@ -136,6 +116,40 @@ public class MainWindow extends JFrame {
         }
 
         currentFurnace = 1;
+    }
+
+    private void windowListener() {
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                savePreviousFurnaceData(currentFurnace);
+                saveData.saveItemAction();
+            }
+        });
+    }
+
+    private void calculateActionListener() {
+        calculate.addActionListener(e -> {
+            savePreviousFurnaceData(currentFurnace);
+            excelData.sendData();
+            int[] result = excelData.getData();
+            if (result != null) {
+                setResult(result);
+                JOptionPane.showMessageDialog(MainPanel, "Решение найдено");
+                if (diagramItem != null) {
+                    diagramItem.setEnabled(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(MainPanel, "Для заданных ограничений нет решений");
+            }
+        });
+    }
+
+    private void buildWindow() {
+        setSize(1150, 500);
+        add(MainPanel);
+        setVisible(true);
     }
 
     private void setResult(int[] result) {
@@ -190,19 +204,45 @@ public class MainWindow extends JFrame {
     }
 
     private void buildMenu() {
-        menuBar = new JMenuBar();
+        JMenuBar menuBar = new JMenuBar();
 
-        //build the File menu
-        fileMenu = new JMenu("Файл");
-        openItem = new JMenuItem("Открыть");
-        saveItem = new JMenuItem("Сохранить..");
-        closeItem = new JMenuItem("Закрыть");
-        fileMenu.add(openItem);
-        fileMenu.add(saveItem);
-        fileMenu.add(closeItem);
+        buildFileMenu(menuBar);
+        buildServicesMenu(menuBar);
+    }
+
+    private void buildServicesMenu(JMenuBar menuBar) {
+        tabMenu = new JMenu("Сервисы");
+        diagramItem = new JMenuItem("Диаграмма");
+        JMenuItem reportItem = new JMenuItem("Отчет");
+        tabMenu.add(diagramItem);
+        tabMenu.add(reportItem);
 
         // add menus to menubar
-        menuBar.add(fileMenu);
+        menuBar.add(tabMenu);
+
+        // put the menubar on the frame
+        setJMenuBar(menuBar);
+
+        diagramItem.setEnabled(false);
+
+        diagramItem.addActionListener(e -> {
+            Diagram diagram = new Diagram();
+            diagram.buildDiagram();
+        });
+    }
+
+    private void buildFileMenu(JMenuBar menuBar) {
+        //build the File menu
+        tabMenu = new JMenu("Файл");
+        JMenuItem openItem = new JMenuItem("Открыть");
+        JMenuItem saveItem = new JMenuItem("Сохранить..");
+        JMenuItem closeItem = new JMenuItem("Закрыть");
+        tabMenu.add(openItem);
+        tabMenu.add(saveItem);
+        tabMenu.add(closeItem);
+
+        // add menus to menubar
+        menuBar.add(tabMenu);
 
         // put the menubar on the frame
         setJMenuBar(menuBar);

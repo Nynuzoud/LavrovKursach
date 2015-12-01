@@ -90,6 +90,9 @@ public class DefaultData {
     public final static int ZAPAS_KOKS = 520;
     public final static int TREB_PROIZV_CHUG = 1100;
 
+    private static double[][] defaultArray;
+    private static int[] furnaceResult;
+
     public static double[][] getDefaultArray() {
         return defaultArray;
     }
@@ -98,7 +101,13 @@ public class DefaultData {
         DefaultData.defaultArray = defaultArray;
     }
 
-    private static double[][] defaultArray;
+    public static int[] getFurnaceResult() {
+        return furnaceResult;
+    }
+
+    public static void setFurnaceResult(int[] furnaceResult) {
+        DefaultData.furnaceResult = furnaceResult;
+    }
 
     public void createDefaultData() {
         defaultArray = new double[9][14];
