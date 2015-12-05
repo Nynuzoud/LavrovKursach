@@ -37,15 +37,15 @@ public class Diagram {
                 .height(600)
                 .title("Сравнение текущего расхода газа и оптимального")
                 .xAxisTitle("Номер печи")
-                .yAxisTitle("м^3/ч")
+                .yAxisTitle("Расход, м^3/ч")
                 .theme(StyleManager.ChartTheme.GGPlot2)
                 .build();
 
-        chart.addSeries("Базовый период",
+        chart.addSeries("Базовый расход",
                 new ArrayList<>(Arrays.asList(numberOfFurnaces)),
                 new ArrayList<>(Arrays.asList(defaultNumbers)));
 
-        chart.addSeries("Искомый",
+        chart.addSeries("Оптимальный расход",
                 new ArrayList<>(Arrays.asList(numberOfFurnaces)),
                 new ArrayList<>(Arrays.asList(resultNumbers)));
 
