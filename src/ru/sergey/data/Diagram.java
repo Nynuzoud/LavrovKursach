@@ -6,6 +6,8 @@ import org.knowm.xchart.StyleManager;
 import org.knowm.xchart.SwingWrapper;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -51,6 +53,13 @@ public class Diagram {
 
         SwingWrapper swingWrapper = new SwingWrapper(chart);
         JFrame diagramFrame = swingWrapper.displayChart("Диаграмма расхода природного газа");
-        diagramFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
+        WindowAdapter windowAdapter = new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                 diagramFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            }
+        };
+
+        diagramFrame.addWindowListener(windowAdapter);
     }
 }
