@@ -1,10 +1,7 @@
 package ru.sergey;
 
 import ru.sergey.common.Preferences;
-import ru.sergey.data.DefaultData;
-import ru.sergey.data.Diagram;
-import ru.sergey.data.ExcelData;
-import ru.sergey.data.SaveData;
+import ru.sergey.data.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -83,6 +80,7 @@ public class MainWindow extends JFrame {
     private JButton calculate;
     private JMenu tabMenu;
     private JMenuItem diagramItem;
+    private JMenuItem reportItem;
 
     //init classes
     private DefaultData defaultData = new DefaultData();
@@ -139,6 +137,9 @@ public class MainWindow extends JFrame {
                 JOptionPane.showMessageDialog(MainPanel, "Решение найдено");
                 if (diagramItem != null) {
                     diagramItem.setEnabled(true);
+                }
+                if (reportItem != null) {
+                    reportItem.setEnabled(true);
                 }
             } else {
                 JOptionPane.showMessageDialog(MainPanel, "Для заданных ограничений нет решений");
@@ -213,7 +214,7 @@ public class MainWindow extends JFrame {
     private void buildServicesMenu(JMenuBar menuBar) {
         tabMenu = new JMenu("Сервисы");
         diagramItem = new JMenuItem("Диаграмма");
-        JMenuItem reportItem = new JMenuItem("Отчет");
+        reportItem = new JMenuItem("Отчет");
         tabMenu.add(diagramItem);
         tabMenu.add(reportItem);
 
@@ -224,11 +225,18 @@ public class MainWindow extends JFrame {
         setJMenuBar(menuBar);
 
         diagramItem.setEnabled(false);
+        reportItem.setEnabled(false);
 
         diagramItem.addActionListener(e -> {
             Diagram diagram = new Diagram();
             diagram.buildDiagram();
         });
+
+        reportItem.addActionListener(e -> {
+            Report report = new Report();
+            report.build();
+        });
+
     }
 
     private void buildFileMenu(JMenuBar menuBar) {
