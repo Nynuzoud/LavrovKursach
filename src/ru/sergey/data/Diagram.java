@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Diagram {
-    public void buildDiagram(){
+    public void build(){
         int[] furnaceResult = DefaultData.getFurnaceResult();
         double[][] defaultArray = DefaultData.getDefaultArray();
 

@@ -229,7 +229,7 @@ public class MainWindow extends JFrame {
 
         diagramItem.addActionListener(e -> {
             Diagram diagram = new Diagram();
-            diagram.buildDiagram();
+            diagram.build();
         });
 
         reportItem.addActionListener(e -> {
