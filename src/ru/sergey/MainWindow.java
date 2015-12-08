@@ -87,6 +87,10 @@ public class MainWindow extends JFrame {
     private SaveData saveData = new SaveData();
     private ExcelData excelData = new ExcelData();
 
+    //init loading dialog
+    ImageIcon loading = new ImageIcon("./images/loading.gif");
+    JDialog loadingDilog = new JDialog();
+
     //current furnace
     private static int currentFurnace;
 
@@ -114,6 +118,15 @@ public class MainWindow extends JFrame {
         }
 
         currentFurnace = 1;
+
+        initLoadingDialog();
+    }
+
+    private void initLoadingDialog() {
+        loadingDilog.add(new JLabel("loading...", loading, JLabel.CENTER));
+        loadingDilog.setSize(400, 300);
+        loadingDilog.setUndecorated(true);
+        loadingDilog.setVisible(false);
     }
 
     private void windowListener() {
@@ -129,21 +142,26 @@ public class MainWindow extends JFrame {
 
     private void calculateActionListener() {
         calculate.addActionListener(e -> {
-            savePreviousFurnaceData(currentFurnace);
-            excelData.sendData();
-            int[] result = excelData.getData();
-            if (result != null) {
-                setResult(result);
-                JOptionPane.showMessageDialog(MainPanel, "Решение найдено");
-                if (diagramItem != null) {
-                    diagramItem.setEnabled(true);
+            loadingDilog.setVisible(true);
+            Thread loadingThread = new Thread(() -> {
+                savePreviousFurnaceData(currentFurnace);
+                excelData.sendData();
+                int[] result = excelData.getData();
+                if (result != null) {
+                    setResult(result);
+                    JOptionPane.showMessageDialog(MainPanel, "Решение найдено");
+                    if (diagramItem != null) {
+                        diagramItem.setEnabled(true);
+                    }
+                    if (reportItem != null) {
+                        reportItem.setEnabled(true);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(MainPanel, "Для заданных ограничений нет решений");
                 }
-                if (reportItem != null) {
-                    reportItem.setEnabled(true);
-                }
-            } else {
-                JOptionPane.showMessageDialog(MainPanel, "Для заданных ограничений нет решений");
-            }
+                loadingDilog.setVisible(false);
+            });
+            loadingThread.start();
         });
     }
 
