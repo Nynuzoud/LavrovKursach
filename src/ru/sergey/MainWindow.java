@@ -125,6 +125,7 @@ public class MainWindow extends JFrame {
     private void initLoadingDialog() {
         loadingDilog.add(new JLabel("loading...", loading, JLabel.CENTER));
         loadingDilog.setSize(400, 300);
+        loadingDilog.setLocation((getWidth() - loadingDilog.getWidth()) / 2, (getHeight() - loadingDilog.getHeight()) / 2);
         loadingDilog.setUndecorated(true);
         loadingDilog.setVisible(false);
     }
@@ -246,13 +247,27 @@ public class MainWindow extends JFrame {
         reportItem.setEnabled(false);
 
         diagramItem.addActionListener(e -> {
-            Diagram diagram = new Diagram();
-            diagram.build();
+            loadingDilog.setVisible(true);
+            Thread loadingThread = new Thread(() -> {
+                Diagram diagram = new Diagram();
+                diagram.build();
+                loadingDilog.setVisible(false);
+            });
+            loadingThread.start();
         });
 
         reportItem.addActionListener(e -> {
-            Report report = new Report();
-            report.build();
+            loadingDilog.setVisible(true);
+
+            Thread loadingThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Report report = new Report();
+                    report.build();
+                    loadingDilog.setVisible(false);
+                }
+            });
+            loadingThread.start();
         });
 
     }
