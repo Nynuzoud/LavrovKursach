@@ -4,6 +4,7 @@ import ru.sergey.common.Preferences;
 import ru.sergey.data.*;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -256,20 +257,120 @@ public class MainWindow extends JFrame {
             loadingThread.start();
         });
 
-        reportItem.addActionListener(e -> {
-            loadingDilog.setVisible(true);
+        reportItem.addActionListener(e -> settingsDialog());
 
-            Thread loadingThread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    Report report = new Report();
-                    report.build();
-                    loadingDilog.setVisible(false);
-                }
-            });
-            loadingThread.start();
+    }
+
+    private void settingsDialog() {
+        JPanel setupReport = new JPanel();
+        setupReport.setLayout(new GridLayout(24, 2));
+
+        JLabel furnLabel = new JLabel("Печи");
+        furnLabel.getFont().deriveFont(22.0f);
+        setupReport.add(furnLabel);
+
+        JCheckBox allFurnCheckBox = new JCheckBox("Выбрать/убрать все печи", true);
+        setupReport.add(allFurnCheckBox);
+
+        for (int i = 1; i < 9; i++) {
+            JCheckBox checkBox = new JCheckBox("Печь " + i, true);
+            checkBox.setFont(Font.getFont(Font.SANS_SERIF));
+            setupReport.add(checkBox);
+        }
+
+        makeSpace(setupReport, 0);
+
+        String[] settingsTech = {"Расход природного газа искомый, м3/ч",
+                "Расход природного газа в базовом периоде, м3/ч",
+                "Минимально допустимый расход природного газа, м3/ч",
+                "Максимально допустимый расход природного газа, м3/ч",
+                "Расход кокса в базовом периоде, т/час",
+                "Эквивалент замены кокса в базовом периоде, кг кокса /(м3 ПГ)",
+                "Производительность по чугуну в базовом периоде, т /ч",
+                "Содержание Si в чугуне в базовом периоде, %",
+                "Минимально допустимое [Si], %",
+                "Максимально допустимое [Si], %"};
+
+        String[] settingsKoef = {"Изменение производства чугуна при изменении ПГ, т чуг/(м3 ПГ)",
+                "Изменение производства чугуна при увеличении расхода кокса, т чуг/(кг кокса)",
+                "Изменение [Si] при увеличении расхода ПГ на 1 м3/ч",
+                "Изменение [Si] при увеличении расхода кокса на 1 кг/ч",
+                "Изменение [Si] при увеличении производительности печи на 1 т чуг/ч"};
+
+        String[] settingsPokaz = {"Резерв по расходу природного газа в целом по цеху, м3/ч",
+                "Запасы кокса по цеху, т/ч",
+                "Требуемое производство чугуна в цехе, т/ ч"};
+
+        JLabel techLabel = new JLabel("Технологические параметры");
+        furnLabel.getFont().deriveFont(22.0f);
+        setupReport.add(techLabel);
+
+        JCheckBox allTechCheckBox = new JCheckBox("Выбрать/убрать все технологические параметры", true);
+        setupReport.add(allTechCheckBox);
+
+        for (String name : settingsTech) {
+            JCheckBox checkBox = new JCheckBox(name, true);
+            checkBox.setFont(Font.getFont(Font.SANS_SERIF));
+            setupReport.add(checkBox);
+        }
+
+        makeSpace(setupReport, settingsTech.length);
+
+        JLabel koefLabel = new JLabel("Коэффициенты");
+        furnLabel.getFont().deriveFont(22.0f);
+        setupReport.add(koefLabel);
+
+        JCheckBox allKoefCheckBox = new JCheckBox("Выбрать/убрать все коэффициенты", true);
+        setupReport.add(allKoefCheckBox);
+
+        for (String name : settingsKoef) {
+            JCheckBox checkBox = new JCheckBox(name, true);
+            checkBox.setFont(Font.getFont(Font.SANS_SERIF));
+            setupReport.add(checkBox);
+        }
+
+        makeSpace(setupReport, settingsKoef.length);
+
+        JLabel pokazLabel = new JLabel("Показатели");
+        furnLabel.getFont().deriveFont(22.0f);
+        setupReport.add(pokazLabel);
+
+        JCheckBox allPokazCheckBox = new JCheckBox("Выбрать/убрать все показатели", true);
+        setupReport.add(allPokazCheckBox);
+
+        for (String name : settingsPokaz) {
+            JCheckBox checkBox = new JCheckBox(name, true);
+            checkBox.setFont(Font.getFont(Font.SANS_SERIF));
+            setupReport.add(checkBox);
+        }
+
+        int option = JOptionPane.showConfirmDialog(new JFrame(), setupReport,
+                "Выберите поля, которые необходимо отобразить в отчете", JOptionPane.YES_NO_OPTION);
+
+        allFurnCheckBox.addActionListener(e -> {
+
         });
 
+        if (option == JOptionPane.YES_OPTION) {
+            loadingDilog.setVisible(true);
+            Thread loadingThread = new Thread(() -> {
+                Report report = new Report();
+                report.build();
+                loadingDilog.setVisible(false);
+            });
+            loadingThread.start();
+        } else {
+            setupReport.setVisible(false);
+        }
+    }
+
+    private void makeSpace(JPanel setupReport, int length) {
+        if (length % 2 != 0) {
+            setupReport.add(new JLabel("\u00a0"));
+        }
+
+        setupReport.add(new JLabel("\u00a0"));
+        setupReport.add(new JLabel("\u00a0"));
     }
 
     private void buildFileMenu(JMenuBar menuBar) {
