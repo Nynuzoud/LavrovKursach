@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainWindow extends JFrame {
     private JPanel MainPanel;
@@ -272,10 +274,12 @@ public class MainWindow extends JFrame {
         JCheckBox allFurnCheckBox = new JCheckBox("Выбрать/убрать все печи", true);
         setupReport.add(allFurnCheckBox);
 
+        List<JCheckBox> furnCheckBoxList = new ArrayList<>();
         for (int i = 1; i < 9; i++) {
             JCheckBox checkBox = new JCheckBox("Печь " + i, true);
             checkBox.setFont(Font.getFont(Font.SANS_SERIF));
             setupReport.add(checkBox);
+            furnCheckBoxList.add(checkBox);
         }
 
         makeSpace(setupReport, 0);
@@ -308,10 +312,12 @@ public class MainWindow extends JFrame {
         JCheckBox allTechCheckBox = new JCheckBox("Выбрать/убрать все технологические параметры", true);
         setupReport.add(allTechCheckBox);
 
+        List<JCheckBox> techCheckBoxList = new ArrayList<>();
         for (String name : settingsTech) {
             JCheckBox checkBox = new JCheckBox(name, true);
             checkBox.setFont(Font.getFont(Font.SANS_SERIF));
             setupReport.add(checkBox);
+            techCheckBoxList.add(checkBox);
         }
 
         makeSpace(setupReport, settingsTech.length);
@@ -323,10 +329,12 @@ public class MainWindow extends JFrame {
         JCheckBox allKoefCheckBox = new JCheckBox("Выбрать/убрать все коэффициенты", true);
         setupReport.add(allKoefCheckBox);
 
+        List<JCheckBox> koefCheckBoxList = new ArrayList<>();
         for (String name : settingsKoef) {
             JCheckBox checkBox = new JCheckBox(name, true);
             checkBox.setFont(Font.getFont(Font.SANS_SERIF));
             setupReport.add(checkBox);
+            koefCheckBoxList.add(checkBox);
         }
 
         makeSpace(setupReport, settingsKoef.length);
@@ -338,18 +346,56 @@ public class MainWindow extends JFrame {
         JCheckBox allPokazCheckBox = new JCheckBox("Выбрать/убрать все показатели", true);
         setupReport.add(allPokazCheckBox);
 
+        List<JCheckBox> pokazCheckBoxList = new ArrayList<>();
         for (String name : settingsPokaz) {
             JCheckBox checkBox = new JCheckBox(name, true);
             checkBox.setFont(Font.getFont(Font.SANS_SERIF));
             setupReport.add(checkBox);
+            pokazCheckBoxList.add(checkBox);
         }
+
+        allFurnCheckBox.addActionListener(e -> {
+            Boolean isCheckBoxSelected = false;
+            if (allFurnCheckBox.isSelected()) {
+                isCheckBoxSelected = true;
+            }
+            for (JCheckBox checkBox : furnCheckBoxList) {
+                checkBox.setSelected(isCheckBoxSelected);
+            }
+        });
+
+        allTechCheckBox.addActionListener(e -> {
+            Boolean isCheckBoxSelected = false;
+            if (allTechCheckBox.isSelected()) {
+                isCheckBoxSelected = true;
+            }
+            for (JCheckBox checkBox : techCheckBoxList) {
+                checkBox.setSelected(isCheckBoxSelected);
+            }
+        });
+
+        allKoefCheckBox.addActionListener(e -> {
+            Boolean isCheckBoxSelected = false;
+            if (allKoefCheckBox.isSelected()) {
+                isCheckBoxSelected = true;
+            }
+            for (JCheckBox checkBox : koefCheckBoxList) {
+                checkBox.setSelected(isCheckBoxSelected);
+            }
+        });
+
+        allPokazCheckBox.addActionListener(e -> {
+            Boolean isCheckBoxSelected = false;
+            if (allPokazCheckBox.isSelected()) {
+                isCheckBoxSelected = true;
+            }
+            for (JCheckBox checkBox : pokazCheckBoxList) {
+                checkBox.setSelected(isCheckBoxSelected);
+            }
+        });
 
         int option = JOptionPane.showConfirmDialog(new JFrame(), setupReport,
                 "Выберите поля, которые необходимо отобразить в отчете", JOptionPane.YES_NO_OPTION);
-
-        allFurnCheckBox.addActionListener(e -> {
-
-        });
 
         if (option == JOptionPane.YES_OPTION) {
             loadingDilog.setVisible(true);
