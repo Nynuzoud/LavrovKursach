@@ -264,6 +264,8 @@ public class MainWindow extends JFrame {
     }
 
     private void settingsDialog() {
+        ArrayList<Boolean> isCheckBoxSelectedList = new ArrayList<>();
+
         JPanel setupReport = new JPanel();
         setupReport.setLayout(new GridLayout(24, 2));
 
@@ -284,8 +286,7 @@ public class MainWindow extends JFrame {
 
         makeSpace(setupReport, 0);
 
-        String[] settingsTech = {"Расход природного газа искомый, м3/ч",
-                "Расход природного газа в базовом периоде, м3/ч",
+        String[] settingsTech = {"Расход природного газа в базовом периоде, м3/ч",
                 "Минимально допустимый расход природного газа, м3/ч",
                 "Максимально допустимый расход природного газа, м3/ч",
                 "Расход кокса в базовом периоде, т/час",
@@ -359,8 +360,10 @@ public class MainWindow extends JFrame {
             if (allFurnCheckBox.isSelected()) {
                 isCheckBoxSelected = true;
             }
-            for (JCheckBox checkBox : furnCheckBoxList) {
+            for (int i = 0; i < furnCheckBoxList.size(); i++) {
+                JCheckBox checkBox = furnCheckBoxList.get(i);
                 checkBox.setSelected(isCheckBoxSelected);
+                furnCheckBoxList.set(i, checkBox);
             }
         });
 
@@ -369,8 +372,10 @@ public class MainWindow extends JFrame {
             if (allTechCheckBox.isSelected()) {
                 isCheckBoxSelected = true;
             }
-            for (JCheckBox checkBox : techCheckBoxList) {
+            for (int i = 0; i < techCheckBoxList.size(); i++) {
+                JCheckBox checkBox = techCheckBoxList.get(i);
                 checkBox.setSelected(isCheckBoxSelected);
+                techCheckBoxList.set(i, checkBox);
             }
         });
 
@@ -379,8 +384,10 @@ public class MainWindow extends JFrame {
             if (allKoefCheckBox.isSelected()) {
                 isCheckBoxSelected = true;
             }
-            for (JCheckBox checkBox : koefCheckBoxList) {
+            for (int i = 0; i < koefCheckBoxList.size(); i++) {
+                JCheckBox checkBox = koefCheckBoxList.get(i);
                 checkBox.setSelected(isCheckBoxSelected);
+                koefCheckBoxList.set(i, checkBox);
             }
         });
 
@@ -389,8 +396,10 @@ public class MainWindow extends JFrame {
             if (allPokazCheckBox.isSelected()) {
                 isCheckBoxSelected = true;
             }
-            for (JCheckBox checkBox : pokazCheckBoxList) {
+            for (int i = 0; i < pokazCheckBoxList.size(); i++) {
+                JCheckBox checkBox = pokazCheckBoxList.get(i);
                 checkBox.setSelected(isCheckBoxSelected);
+                pokazCheckBoxList.set(i, checkBox);
             }
         });
 
@@ -400,8 +409,32 @@ public class MainWindow extends JFrame {
         if (option == JOptionPane.YES_OPTION) {
             loadingDilog.setVisible(true);
             Thread loadingThread = new Thread(() -> {
+
+                Boolean[] isSelectedCheckBoxes = new Boolean[furnCheckBoxList.size() + techCheckBoxList.size() +
+                        koefCheckBoxList.size() + pokazCheckBoxList.size()];
+                int index = 0;
+                for (JCheckBox checkBox : furnCheckBoxList) {
+                    isSelectedCheckBoxes[index] = checkBox.isSelected();
+                    index++;
+                }
+
+                for (JCheckBox checkBox : techCheckBoxList) {
+                    isSelectedCheckBoxes[index] = checkBox.isSelected();
+                    index++;
+                }
+
+                for (JCheckBox checkBox : koefCheckBoxList) {
+                    isSelectedCheckBoxes[index] = checkBox.isSelected();
+                    index++;
+                }
+
+                for (JCheckBox checkBox : pokazCheckBoxList) {
+                    isSelectedCheckBoxes[index] = checkBox.isSelected();
+                    index++;
+                }
+
                 Report report = new Report();
-                report.build();
+                report.build(isSelectedCheckBoxes);
                 loadingDilog.setVisible(false);
             });
             loadingThread.start();
