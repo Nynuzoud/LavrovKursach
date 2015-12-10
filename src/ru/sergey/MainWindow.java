@@ -264,7 +264,6 @@ public class MainWindow extends JFrame {
     }
 
     private void settingsDialog() {
-        ArrayList<Boolean> isCheckBoxSelectedList = new ArrayList<>();
 
         JPanel setupReport = new JPanel();
         setupReport.setLayout(new GridLayout(24, 2));
