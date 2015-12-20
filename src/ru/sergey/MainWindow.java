@@ -3,6 +3,7 @@ package ru.sergey;
 import ru.sergey.common.Preferences;
 import ru.sergey.data.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,8 +11,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class MainWindow extends JFrame {
     private JPanel MainPanel;
@@ -81,9 +85,14 @@ public class MainWindow extends JFrame {
     private JRadioButton furnaceRadioButton7;
     private JRadioButton furnaceRadioButton8;
     private JButton calculate;
+    private JButton russianLang;
+    private JButton englishLang;
     private JMenu tabMenu;
     private JMenuItem diagramItem;
     private JMenuItem reportItem;
+    private ResourceBundle locale;
+    private Locale enLocale;
+    private Locale ruLocale;
 
     //init classes
     private DefaultData defaultData = new DefaultData();
@@ -99,6 +108,26 @@ public class MainWindow extends JFrame {
 
     public void MainForm() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        ruLocale = new Locale("ru", "RU");
+        enLocale = new Locale("en", "GB");
+
+        try {
+            Image ruImage = ImageIO.read(getClass().getResource("/russia.png"));
+            Image enImage = ImageIO.read(getClass().getResource("/england.png"));
+            russianLang.setIcon(new ImageIcon(ruImage));
+            englishLang.setIcon(new ImageIcon(enImage));
+            englishLang.addActionListener(e -> {
+                locale = ResourceBundle.getBundle("locales", enLocale);
+            });
+            russianLang.addActionListener(e -> {
+                locale = ResourceBundle.getBundle("locales", ruLocale);
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        locale = ResourceBundle.getBundle("locales", enLocale);
 
         windowListener();
 
@@ -453,10 +482,10 @@ public class MainWindow extends JFrame {
 
     private void buildFileMenu(JMenuBar menuBar) {
         //build the File menu
-        tabMenu = new JMenu("Файл");
-        JMenuItem openItem = new JMenuItem("Открыть");
-        JMenuItem saveItem = new JMenuItem("Сохранить..");
-        JMenuItem closeItem = new JMenuItem("Закрыть");
+        tabMenu = new JMenu(locale.getString("file"));
+        JMenuItem openItem = new JMenuItem(locale.getString("open"));
+        JMenuItem saveItem = new JMenuItem(locale.getString("save_file"));
+        JMenuItem closeItem = new JMenuItem(locale.getString("close"));
         tabMenu.add(openItem);
         tabMenu.add(saveItem);
         tabMenu.add(closeItem);
