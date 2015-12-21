@@ -117,12 +117,8 @@ public class MainWindow extends JFrame {
             Image enImage = ImageIO.read(getClass().getResource("/england.png"));
             russianLang.setIcon(new ImageIcon(ruImage));
             englishLang.setIcon(new ImageIcon(enImage));
-            englishLang.addActionListener(e -> {
-                locale = ResourceBundle.getBundle("locales", enLocale);
-            });
-            russianLang.addActionListener(e -> {
-                locale = ResourceBundle.getBundle("locales", ruLocale);
-            });
+            englishLang.addActionListener(e -> locale = ResourceBundle.getBundle("locales", enLocale));
+            russianLang.addActionListener(e -> locale = ResourceBundle.getBundle("locales", ruLocale));
         } catch (IOException e) {
             e.printStackTrace();
         }
