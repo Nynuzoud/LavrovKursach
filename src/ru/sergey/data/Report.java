@@ -12,10 +12,18 @@ import net.sf.dynamicreports.report.exception.DRException;
 import net.sf.jasperreports.engine.JRDataSource;
 
 import java.awt.*;
+import java.util.ResourceBundle;
 
 import static net.sf.dynamicreports.report.builder.DynamicReports.*;
 
 public class Report {
+
+    private ResourceBundle locale;
+
+    public Report(ResourceBundle mainLocale) {
+        locale = mainLocale;
+    }
+
     public void build(Boolean[] isSelectedCheckBoxes) {
         JasperReportBuilder reportBuilder = report();
 
@@ -42,16 +50,16 @@ public class Report {
                 .setFontSize(18)
                 .setBottomPadding(15);
 
-        TextColumnBuilder<String> furnaceColumn = col.column("Печь", "furnace", type.stringType())
+        TextColumnBuilder<String> furnaceColumn = col.column(locale.getString("furnaceLabel"), "furnace", type.stringType())
                 .setStyle(bigBoldStyle);
-        TextColumnBuilder<String> itemsColumn = col.column("Исходные данные", "items", DynamicReports.type.stringType());
-        TextColumnBuilder<String> countColumn = col.column("Значение", "count", DynamicReports.type.stringType());
+        TextColumnBuilder<String> itemsColumn = col.column(locale.getString("ishData"), "items", DynamicReports.type.stringType());
+        TextColumnBuilder<String> countColumn = col.column(locale.getString("value"), "count", DynamicReports.type.stringType());
         try {
             reportBuilder
                     .setColumnTitleStyle(columnTitleStyle)
                     .setColumnStyle(columnStyle)
                     .columns(furnaceColumn, itemsColumn, countColumn)
-                    .title(Components.text("Результаты")
+                    .title(Components.text(locale.getString("results"))
                             .setStyle(titleStyle))
                     .groupBy(furnaceColumn)
                     .setDataSource(getDataSource(isSelectedCheckBoxes))
@@ -72,73 +80,73 @@ public class Report {
                 if (isSelectedCheckBoxes[i]) {
                     index = i + 1;
                     if (isSelectedCheckBoxes[8]) {
-                        drDataSource.add("Печь " + index, "Расход природного газа в базовом периоде, м3/ч",
+                        drDataSource.add(locale.getString("furnaceLabel") + " " + index, locale.getString("reportRashodPGBase"),
                                 String.valueOf(defaultData[i][0]));
                     }
                     if (isSelectedCheckBoxes[9]) {
-                        drDataSource.add("Печь " + index, "Минимально допустимый расход природного газа, м3/ч",
+                        drDataSource.add(locale.getString("furnaceLabel") + " " + index, locale.getString("reportMinPG"),
                                 String.valueOf(defaultData[i][1]));
                     }
                     if (isSelectedCheckBoxes[10]) {
-                        drDataSource.add("Печь " + index, "Максимально допустимый расход природного газа, м3/ч",
+                        drDataSource.add(locale.getString("furnaceLabel") + " " + index, locale.getString("reportMaxPG"),
                                 String.valueOf(defaultData[i][2]));
                     }
                     if (isSelectedCheckBoxes[11]) {
-                        drDataSource.add("Печь " + index, "Расход кокса в базовом периоде, т/час",
+                        drDataSource.add(locale.getString("furnaceLabel") + " " + index, locale.getString("reportRashodKoksBase"),
                                 String.valueOf(defaultData[i][3]));
                     }
                     if (isSelectedCheckBoxes[12]) {
-                        drDataSource.add("Печь " + index, "Эквивалент замены кокса в базовом периоде, кг кокса /(м3 ПГ)",
+                        drDataSource.add(locale.getString("furnaceLabel") + " " + index, locale.getString("reportEkvZamKoksBase"),
                                 String.valueOf(defaultData[i][4]));
                     }
                     if (isSelectedCheckBoxes[13]) {
-                        drDataSource.add("Печь " + index, "Производительность по чугуну в базовом периоде, т /ч",
+                        drDataSource.add(locale.getString("furnaceLabel") + " " + index, locale.getString("reportProizvChugBase"),
                                 String.valueOf(defaultData[i][5]));
                     }
                     if (isSelectedCheckBoxes[14]) {
-                        drDataSource.add("Печь " + index, "Содержание Si в чугуне в базовом периоде, %",
+                        drDataSource.add(locale.getString("furnaceLabel") + " " + index, locale.getString("reportSodSiBase"),
                                 String.valueOf(defaultData[i][6]));
                     }
                     if (isSelectedCheckBoxes[15]) {
-                        drDataSource.add("Печь " + index, "Минимально допустимое [Si], %",
+                        drDataSource.add(locale.getString("furnaceLabel") + " " + index, locale.getString("reportMinSi"),
                                 String.valueOf(defaultData[i][7]));
                     }
                     if (isSelectedCheckBoxes[16]) {
-                        drDataSource.add("Печь " + index, "Максимально допустимое [Si], %",
+                        drDataSource.add(locale.getString("furnaceLabel") + " " + index, locale.getString("reportMaxSi"),
                                 String.valueOf(defaultData[i][8]));
                     }
                     if (isSelectedCheckBoxes[17]) {
-                        drDataSource.add("Печь " + index, "Изменение производства чугуна при изменении ПГ, т чуг/(м3 ПГ)",
+                        drDataSource.add(locale.getString("furnaceLabel") + " " + index, locale.getString("reportIzmPrChugPG"),
                                 String.valueOf(defaultData[i][9]));
                     }
                     if (isSelectedCheckBoxes[18]) {
-                        drDataSource.add("Печь " + index, "Изменение производства чугуна при увеличении расхода кокса, т чуг/(кг кокса)",
+                        drDataSource.add(locale.getString("furnaceLabel") + " " + index, locale.getString("reportIzmProizvChugRashodKoks"),
                                 String.valueOf(defaultData[i][10]));
                     }
                     if (isSelectedCheckBoxes[19]) {
-                        drDataSource.add("Печь " + index, "Изменение [Si] при увеличении расхода ПГ на 1 м3/ч",
+                        drDataSource.add(locale.getString("furnaceLabel") + " " + index, locale.getString("reportIzmSiPG"),
                                 String.valueOf(defaultData[i][11]));
                     }
                     if (isSelectedCheckBoxes[20]) {
-                        drDataSource.add("Печь " + index, "Изменение [Si] при увеличении расхода кокса на 1 кг/ч",
+                        drDataSource.add(locale.getString("furnaceLabel") + " " + index, locale.getString("reportIzmSiKoks"),
                                 String.valueOf(defaultData[i][12]));
                     }
                     if (isSelectedCheckBoxes[21]) {
-                        drDataSource.add("Печь " + index, "Изменение [Si] при увеличении производительности печи на 1 т чуг/ч",
+                        drDataSource.add(locale.getString("furnaceLabel") + " " + index, locale.getString("reportIzmSiProizv"),
                                 String.valueOf(defaultData[i][13]));
                     }
                 }
             } else {
                 if (isSelectedCheckBoxes[22]) {
-                    drDataSource.add("Наименование показателя", "Резерв по расходу природного газа в целом по цеху, м3/ч",
+                    drDataSource.add(locale.getString("pokazatelName"), locale.getString("reportRezervPG"),
                             String.valueOf(defaultData[i][0]));
                 }
                 if (isSelectedCheckBoxes[23]) {
-                    drDataSource.add("Наименование показателя", "Запасы кокса по цеху, т/ч",
+                    drDataSource.add(locale.getString("pokazatelName"), locale.getString("reportZapasKoks"),
                             String.valueOf(defaultData[i][1]));
                 }
                 if (isSelectedCheckBoxes[24]) {
-                    drDataSource.add("Наименование показателя", "Требуемое производство чугуна в цехе, т/ч",
+                    drDataSource.add(locale.getString("pokazatelName"), locale.getString("reportTrebProizvChug"),
                             String.valueOf(defaultData[i][2]));
                 }
             }
@@ -146,7 +154,8 @@ public class Report {
 
         for (int i = 0; i < resultData.length; i++) {
             index = i + 1;
-            drDataSource.add("Результат", "Оптимальный расход печи №" + index + ", м3/ч",
+            drDataSource.add(locale.getString("result"), locale.getString("optRashodFurnace") + " №" + index + ", " +
+                    locale.getString("m3chas"),
                     String.valueOf(resultData[i]));
         }
 

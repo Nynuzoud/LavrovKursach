@@ -10,8 +10,16 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ResourceBundle;
 
 public class Diagram {
+
+    private ResourceBundle locale;
+
+    public Diagram(ResourceBundle mainLocale) {
+        locale = mainLocale;
+    }
+
     public void build(){
         int[] furnaceResult = DefaultData.getFurnaceResult();
         double[][] defaultArray = DefaultData.getDefaultArray();
@@ -30,29 +38,29 @@ public class Diagram {
 
         for (int i = 0; i < numberOfFurnaces.length; i++) {
             int furnaceNumber = i + 1;
-            numberOfFurnaces[i] = "Печь " + furnaceNumber;
+            numberOfFurnaces[i] = locale.getString("furnaceLabel") + " " + furnaceNumber;
         }
 
         Chart chart = new ChartBuilder()
                 .chartType(StyleManager.ChartType.Bar)
                 .width(1200)
                 .height(600)
-                .title("Сравнение текущего расхода газа и оптимального")
-                .xAxisTitle("Номер печи")
-                .yAxisTitle("Расход, м^3/ч")
+                .title(locale.getString("comparisonPG"))
+                .xAxisTitle(locale.getString("furnaceNumber"))
+                .yAxisTitle(locale.getString("rashod"))
                 .theme(StyleManager.ChartTheme.GGPlot2)
                 .build();
 
-        chart.addSeries("Базовый расход",
+        chart.addSeries(locale.getString("baseRashod"),
                 new ArrayList<>(Arrays.asList(numberOfFurnaces)),
                 new ArrayList<>(Arrays.asList(defaultNumbers)));
 
-        chart.addSeries("Оптимальный расход",
+        chart.addSeries(locale.getString("optRashod"),
                 new ArrayList<>(Arrays.asList(numberOfFurnaces)),
                 new ArrayList<>(Arrays.asList(resultNumbers)));
 
         SwingWrapper swingWrapper = new SwingWrapper(chart);
-        JFrame diagramFrame = swingWrapper.displayChart("Диаграмма расхода природного газа");
+        JFrame diagramFrame = swingWrapper.displayChart(locale.getString("diagramRashodPG"));
 
         WindowAdapter windowAdapter = new WindowAdapter() {
             public void windowClosing(WindowEvent e) {

@@ -93,6 +93,7 @@ public class MainWindow extends JFrame {
     private ResourceBundle locale;
     private Locale enLocale;
     private Locale ruLocale;
+    private int[] result = null;
 
     //init classes
     private DefaultData defaultData = new DefaultData();
@@ -109,21 +110,7 @@ public class MainWindow extends JFrame {
     public void MainForm() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        ruLocale = new Locale("ru", "RU");
-        enLocale = new Locale("en", "GB");
-
-        try {
-            Image ruImage = ImageIO.read(getClass().getResource("/russia.png"));
-            Image enImage = ImageIO.read(getClass().getResource("/england.png"));
-            russianLang.setIcon(new ImageIcon(ruImage));
-            englishLang.setIcon(new ImageIcon(enImage));
-            englishLang.addActionListener(e -> locale = ResourceBundle.getBundle("locales", enLocale));
-            russianLang.addActionListener(e -> locale = ResourceBundle.getBundle("locales", ruLocale));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        locale = ResourceBundle.getBundle("locales", enLocale);
+        localization();
 
         windowListener();
 
@@ -148,6 +135,68 @@ public class MainWindow extends JFrame {
         currentFurnace = 1;
 
         initLoadingDialog();
+    }
+
+    private void localization() {
+        ruLocale = new Locale("ru", "RU");
+        enLocale = new Locale("en", "GB");
+        locale = ResourceBundle.getBundle("locales", ruLocale);
+
+        try {
+            Image ruImage = ImageIO.read(getClass().getResource("/russia.png"));
+            Image enImage = ImageIO.read(getClass().getResource("/england.png"));
+            russianLang.setIcon(new ImageIcon(ruImage));
+            englishLang.setIcon(new ImageIcon(enImage));
+            englishLang.addActionListener(e -> {
+                locale = ResourceBundle.getBundle("locales", enLocale);
+                translateFormObjects();
+                buildMenu();
+                buildWindow();
+            });
+            russianLang.addActionListener(e -> {
+                locale = ResourceBundle.getBundle("locales", ruLocale);
+                translateFormObjects();
+                buildMenu();
+                buildWindow();
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void translateFormObjects() {
+        pokazateliLabel.setText(locale.getString("pokazateliLabel"));
+        rezervLabel.setText(locale.getString("rezervLabel"));
+        zapasLabel.setText(locale.getString("zapasLabel"));
+        trebChugLabel.setText(locale.getString("trebChugLabel"));
+        rashodGazaLabel.setText(locale.getString("rashodGazaLabel"));
+        vBazovomPeriodLabel.setText(locale.getString("vBazovomPeriodLabel"));
+        minLabel.setText(locale.getString("minLabel"));
+        maxLabel.setText(locale.getString("maxLabel"));
+        seraLabel.setText(locale.getString("seraLabel"));
+        seraVChuguneLabel.setText(locale.getString("seraVChuguneLabel"));
+        MinSeraLabel.setText(locale.getString("MinSeraLabel"));
+        maxSeraLabel.setText(locale.getString("maxSeraLabel"));
+        koefLabel.setText(locale.getString("koefLabel"));
+        izmPrChugPGLabel.setText(locale.getString("izmPrChugPGLabel"));
+        izmPrChugKoksLabel.setText(locale.getString("izmPrChugKoksLabel"));
+        izmSeraPGLabel.setText(locale.getString("izmSeraPGLabel"));
+        izmSeraKoksLabel.setText(locale.getString("izmSeraKoksLabel"));
+        izmSeraPrLabel.setText(locale.getString("izmSeraPrLabel"));
+        otherLabel.setText(locale.getString("otherLabel"));
+        proizvChugLabel.setText(locale.getString("proizvChugLabel"));
+        rashodKoksaLabel.setText(locale.getString("rashodKoksaLabel"));
+        ekvZameniLabel.setText(locale.getString("ekvZameniLabel"));
+        furnaceLabel.setText(locale.getString("furnaceLabel"));
+        furnaceRadioButton1.setText(locale.getString("furnaceRadioButton1"));
+        furnaceRadioButton2.setText(locale.getString("furnaceRadioButton2"));
+        furnaceRadioButton3.setText(locale.getString("furnaceRadioButton3"));
+        furnaceRadioButton4.setText(locale.getString("furnaceRadioButton4"));
+        furnaceRadioButton5.setText(locale.getString("furnaceRadioButton5"));
+        furnaceRadioButton6.setText(locale.getString("furnaceRadioButton6"));
+        furnaceRadioButton7.setText(locale.getString("furnaceRadioButton7"));
+        furnaceRadioButton8.setText(locale.getString("furnaceRadioButton8"));
+        calculate.setText(locale.getString("calculate"));
     }
 
     private void initLoadingDialog() {
@@ -175,10 +224,10 @@ public class MainWindow extends JFrame {
             Thread loadingThread = new Thread(() -> {
                 savePreviousFurnaceData(currentFurnace);
                 excelData.sendData();
-                int[] result = excelData.getData();
+                result = excelData.getData();
                 if (result != null) {
                     setResult(result);
-                    JOptionPane.showMessageDialog(MainPanel, "Решение найдено");
+                    JOptionPane.showMessageDialog(MainPanel, locale.getString("solutionFound"));
                     if (diagramItem != null) {
                         diagramItem.setEnabled(true);
                     }
@@ -186,7 +235,7 @@ public class MainWindow extends JFrame {
                         reportItem.setEnabled(true);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(MainPanel, "Для заданных ограничений нет решений");
+                    JOptionPane.showMessageDialog(MainPanel, locale.getString("noSolutions"));
                 }
                 loadingDilog.setVisible(false);
             });
@@ -259,9 +308,9 @@ public class MainWindow extends JFrame {
     }
 
     private void buildServicesMenu(JMenuBar menuBar) {
-        tabMenu = new JMenu("Сервисы");
-        diagramItem = new JMenuItem("Диаграмма");
-        reportItem = new JMenuItem("Отчет");
+        tabMenu = new JMenu(locale.getString("services"));
+        diagramItem = new JMenuItem(locale.getString("diagram"));
+        reportItem = new JMenuItem(locale.getString("report"));
         tabMenu.add(diagramItem);
         tabMenu.add(reportItem);
 
@@ -271,13 +320,15 @@ public class MainWindow extends JFrame {
         // put the menubar on the frame
         setJMenuBar(menuBar);
 
-        diagramItem.setEnabled(false);
-        reportItem.setEnabled(false);
+        if (result == null) {
+            diagramItem.setEnabled(false);
+            reportItem.setEnabled(false);
+        }
 
         diagramItem.addActionListener(e -> {
             loadingDilog.setVisible(true);
             Thread loadingThread = new Thread(() -> {
-                Diagram diagram = new Diagram();
+                Diagram diagram = new Diagram(locale);
                 diagram.build();
                 loadingDilog.setVisible(false);
             });
@@ -293,16 +344,16 @@ public class MainWindow extends JFrame {
         JPanel setupReport = new JPanel();
         setupReport.setLayout(new GridLayout(24, 2));
 
-        JLabel furnLabel = new JLabel("Печи");
+        JLabel furnLabel = new JLabel(locale.getString("furnaces"));
         furnLabel.getFont().deriveFont(22.0f);
         setupReport.add(furnLabel);
 
-        JCheckBox allFurnCheckBox = new JCheckBox("Выбрать/убрать все печи", true);
+        JCheckBox allFurnCheckBox = new JCheckBox(locale.getString("checkFurnaces"), true);
         setupReport.add(allFurnCheckBox);
 
         List<JCheckBox> furnCheckBoxList = new ArrayList<>();
         for (int i = 1; i < 9; i++) {
-            JCheckBox checkBox = new JCheckBox("Печь " + i, true);
+            JCheckBox checkBox = new JCheckBox(locale.getString("furnaceLabel") + " " + i, true);
             checkBox.setFont(Font.getFont(Font.SANS_SERIF));
             setupReport.add(checkBox);
             furnCheckBoxList.add(checkBox);
@@ -310,31 +361,31 @@ public class MainWindow extends JFrame {
 
         makeSpace(setupReport, 0);
 
-        String[] settingsTech = {"Расход природного газа в базовом периоде, м3/ч",
-                "Минимально допустимый расход природного газа, м3/ч",
-                "Максимально допустимый расход природного газа, м3/ч",
-                "Расход кокса в базовом периоде, т/час",
-                "Эквивалент замены кокса в базовом периоде, кг кокса /(м3 ПГ)",
-                "Производительность по чугуну в базовом периоде, т /ч",
-                "Содержание Si в чугуне в базовом периоде, %",
-                "Минимально допустимое [Si], %",
-                "Максимально допустимое [Si], %"};
+        String[] settingsTech = {locale.getString("reportRashodPGBase"),
+                locale.getString("reportMinPG"),
+                locale.getString("reportMaxPG"),
+                locale.getString("reportRashodKoksBase"),
+                locale.getString("reportEkvZamKoksBase"),
+                locale.getString("reportProizvChugBase"),
+                locale.getString("reportSodSiBase"),
+                locale.getString("reportMinSi"),
+                locale.getString("reportMaxSi")};
 
-        String[] settingsKoef = {"Изменение производства чугуна при изменении ПГ, т чуг/(м3 ПГ)",
-                "Изменение производства чугуна при увеличении расхода кокса, т чуг/(кг кокса)",
-                "Изменение [Si] при увеличении расхода ПГ на 1 м3/ч",
-                "Изменение [Si] при увеличении расхода кокса на 1 кг/ч",
-                "Изменение [Si] при увеличении производительности печи на 1 т чуг/ч"};
+        String[] settingsKoef = {locale.getString("reportIzmPrChugPG"),
+                locale.getString("reportIzmProizvChugRashodKoks"),
+                locale.getString("reportIzmSiPG"),
+                locale.getString("reportIzmSiKoks"),
+                locale.getString("reportIzmSiProizv")};
 
-        String[] settingsPokaz = {"Резерв по расходу природного газа в целом по цеху, м3/ч",
-                "Запасы кокса по цеху, т/ч",
-                "Требуемое производство чугуна в цехе, т/ ч"};
+        String[] settingsPokaz = {locale.getString("reportRezervPG"),
+                locale.getString("reportZapasKoks"),
+                locale.getString("reportTrebProizvChug")};
 
-        JLabel techLabel = new JLabel("Технологические параметры");
+        JLabel techLabel = new JLabel(locale.getString("techsParams"));
         furnLabel.getFont().deriveFont(22.0f);
         setupReport.add(techLabel);
 
-        JCheckBox allTechCheckBox = new JCheckBox("Выбрать/убрать все технологические параметры", true);
+        JCheckBox allTechCheckBox = new JCheckBox(locale.getString("checkTechParams"), true);
         setupReport.add(allTechCheckBox);
 
         List<JCheckBox> techCheckBoxList = new ArrayList<>();
@@ -347,11 +398,11 @@ public class MainWindow extends JFrame {
 
         makeSpace(setupReport, settingsTech.length);
 
-        JLabel koefLabel = new JLabel("Коэффициенты");
+        JLabel koefLabel = new JLabel(locale.getString("koefLabel"));
         furnLabel.getFont().deriveFont(22.0f);
         setupReport.add(koefLabel);
 
-        JCheckBox allKoefCheckBox = new JCheckBox("Выбрать/убрать все коэффициенты", true);
+        JCheckBox allKoefCheckBox = new JCheckBox(locale.getString("checkKoefs"), true);
         setupReport.add(allKoefCheckBox);
 
         List<JCheckBox> koefCheckBoxList = new ArrayList<>();
@@ -364,11 +415,11 @@ public class MainWindow extends JFrame {
 
         makeSpace(setupReport, settingsKoef.length);
 
-        JLabel pokazLabel = new JLabel("Показатели");
+        JLabel pokazLabel = new JLabel(locale.getString("pokazateliLabel"));
         furnLabel.getFont().deriveFont(22.0f);
         setupReport.add(pokazLabel);
 
-        JCheckBox allPokazCheckBox = new JCheckBox("Выбрать/убрать все показатели", true);
+        JCheckBox allPokazCheckBox = new JCheckBox(locale.getString("checkPokazateli"), true);
         setupReport.add(allPokazCheckBox);
 
         List<JCheckBox> pokazCheckBoxList = new ArrayList<>();
@@ -428,7 +479,7 @@ public class MainWindow extends JFrame {
         });
 
         int option = JOptionPane.showConfirmDialog(new JFrame(), setupReport,
-                "Выберите поля, которые необходимо отобразить в отчете", JOptionPane.YES_NO_OPTION);
+                locale.getString("checkFields"), JOptionPane.YES_NO_OPTION);
 
         if (option == JOptionPane.YES_OPTION) {
             loadingDilog.setVisible(true);
@@ -457,7 +508,7 @@ public class MainWindow extends JFrame {
                     index++;
                 }
 
-                Report report = new Report();
+                Report report = new Report(locale);
                 report.build(isSelectedCheckBoxes);
                 loadingDilog.setVisible(false);
             });
@@ -594,6 +645,6 @@ public class MainWindow extends JFrame {
         zapasTextField.setText(String.valueOf(array[8][1]));
         trebChugTextField.setText(String.valueOf(array[8][2]));
 
-        furnaceLabel.setText("Печь "+furnaceNumber);
+        furnaceLabel.setText(locale.getString("furnaceLabel") + " " + furnaceNumber);
     }
 }
