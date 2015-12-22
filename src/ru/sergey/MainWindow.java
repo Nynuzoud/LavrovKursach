@@ -104,7 +104,7 @@ public class MainWindow extends JFrame {
     private ExcelData excelData = new ExcelData();
 
     //init loading dialog
-    ImageIcon loading = new ImageIcon("./images/loading.gif");
+    ImageIcon loading = new ImageIcon(getClass().getResource(Preferences.getPreferences.LOADING_IMG_DESTINATION));
     JDialog loadingDilog = new JDialog();
 
     //current furnace
@@ -172,8 +172,8 @@ public class MainWindow extends JFrame {
         locale = ResourceBundle.getBundle("locales", ruLocale);
 
         try {
-            Image ruImage = ImageIO.read(getClass().getResource("/russia.png"));
-            Image enImage = ImageIO.read(getClass().getResource("/england.png"));
+            Image ruImage = ImageIO.read(getClass().getResource(Preferences.getPreferences.RUSSIAN_FLAG_DESTINATION));
+            Image enImage = ImageIO.read(getClass().getResource(Preferences.getPreferences.ENGLISH_FLAG_DESTINATION));
             russianLang.setIcon(new ImageIcon(ruImage));
             englishLang.setIcon(new ImageIcon(enImage));
             englishLang.addActionListener(e -> {
@@ -592,7 +592,7 @@ public class MainWindow extends JFrame {
 
         helpItem.addActionListener(e -> {
             try {
-                Desktop.getDesktop().open(new File("assets/help.chm"));
+                Desktop.getDesktop().open(new File(Preferences.getPreferences.HELP_DESTINATION));
             } catch (IOException e1) {
                 e1.printStackTrace();
             }

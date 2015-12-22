@@ -4,6 +4,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import ru.sergey.common.Preferences;
 
 import java.io.*;
 
@@ -12,7 +13,7 @@ public class ExcelData {
         FileInputStream file;
         double[][] array = DefaultData.getDefaultArray();
         try {
-            file = new FileInputStream(new File("assets/optimize.xlsm"));
+            file = new FileInputStream(new File(Preferences.getPreferences.EXCEL_DESTINATION));
             XSSFWorkbook workbook = new XSSFWorkbook(file);
             XSSFSheet sheet = workbook.getSheetAt(0);
 
@@ -46,7 +47,7 @@ public class ExcelData {
                 i++;
             }
             file.close();
-            FileOutputStream outputStream = new FileOutputStream(new File("assets/optimize.xlsm"));
+            FileOutputStream outputStream = new FileOutputStream(new File(Preferences.getPreferences.EXCEL_DESTINATION));
             workbook.write(outputStream);
             outputStream.close();
         } catch (IOException e) {
@@ -58,7 +59,7 @@ public class ExcelData {
         int[] result = null;
 
         FileInputStream file;
-        String exePath = "assets/RunMacros.exe";
+        String exePath = Preferences.getPreferences.MACROS_DESTINATION;
         try {
             Process process = Runtime.getRuntime().exec(exePath);
             process.waitFor();
@@ -75,7 +76,7 @@ public class ExcelData {
             if(response.equals("OK")) {
                 result = new int[8];
 
-                file = new FileInputStream(new File("assets/optimize.xlsm"));
+                file = new FileInputStream(new File(Preferences.getPreferences.EXCEL_DESTINATION));
                 XSSFWorkbook workbook = new XSSFWorkbook(file);
                 XSSFSheet sheet = workbook.getSheetAt(0);
 
