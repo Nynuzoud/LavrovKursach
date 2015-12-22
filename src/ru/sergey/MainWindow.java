@@ -592,7 +592,7 @@ public class MainWindow extends JFrame {
 
         helpItem.addActionListener(e -> {
             try {
-                Desktop.getDesktop().open(new File("./src/help.chm"));
+                Desktop.getDesktop().open(new File("assets/help.chm"));
             } catch (IOException e1) {
                 e1.printStackTrace();
             }

@@ -12,7 +12,7 @@ public class ExcelData {
         FileInputStream file;
         double[][] array = DefaultData.getDefaultArray();
         try {
-            file = new FileInputStream(new File("optimize.xlsm"));
+            file = new FileInputStream(new File("assets/optimize.xlsm"));
             XSSFWorkbook workbook = new XSSFWorkbook(file);
             XSSFSheet sheet = workbook.getSheetAt(0);
 
@@ -46,7 +46,7 @@ public class ExcelData {
                 i++;
             }
             file.close();
-            FileOutputStream outputStream = new FileOutputStream(new File("optimize.xlsm"));
+            FileOutputStream outputStream = new FileOutputStream(new File("assets/optimize.xlsm"));
             workbook.write(outputStream);
             outputStream.close();
         } catch (IOException e) {
@@ -58,7 +58,7 @@ public class ExcelData {
         int[] result = null;
 
         FileInputStream file;
-        String exePath = "./src/RunMacros.exe";
+        String exePath = "assets/RunMacros.exe";
         try {
             Process process = Runtime.getRuntime().exec(exePath);
             process.waitFor();
@@ -75,7 +75,7 @@ public class ExcelData {
             if(response.equals("OK")) {
                 result = new int[8];
 
-                file = new FileInputStream(new File("optimize.xlsm"));
+                file = new FileInputStream(new File("assets/optimize.xlsm"));
                 XSSFWorkbook workbook = new XSSFWorkbook(file);
                 XSSFSheet sheet = workbook.getSheetAt(0);
 
