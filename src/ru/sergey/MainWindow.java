@@ -5,6 +5,8 @@ import ru.sergey.data.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -93,6 +95,7 @@ public class MainWindow extends JFrame {
     private ResourceBundle locale;
     private Locale enLocale;
     private Locale ruLocale;
+    private JTextField[] jTextFields;
     private int[] result = null;
 
     //init classes
@@ -120,6 +123,8 @@ public class MainWindow extends JFrame {
 
         buildWindow();
 
+        initTextFields();
+
         furnaceRadioButton1.setSelected(true);
 
         addListenersToRadioButtons();
@@ -135,6 +140,30 @@ public class MainWindow extends JFrame {
         currentFurnace = 1;
 
         initLoadingDialog();
+
+        onTextChangedListener();
+    }
+
+    private void initTextFields() {
+        jTextFields = new JTextField[17];
+        jTextFields[0] = vBazovomPeriodeTextField;
+        jTextFields[1] = minTextField;
+        jTextFields[2] = maxTextField;
+        jTextFields[3] = rashodKoksaTextField;
+        jTextFields[4] = ekvZameniTextField;
+        jTextFields[5] = proizvChugTextField;
+        jTextFields[6] = seraVChuguneTextField;
+        jTextFields[7] = minSeraTextField;
+        jTextFields[8] = maxSeraTextField;
+        jTextFields[9] = izmPrChugPGTextField;
+        jTextFields[10] = izmPrChugKoksTextField;
+        jTextFields[11] = izmSeraPGTextField;
+        jTextFields[12] = izmSeraKoksTextField;
+        jTextFields[13] = izmSeraPrTextField;
+
+        jTextFields[14] = rezervTextField;
+        jTextFields[15] = zapasTextField;
+        jTextFields[16] = trebChugTextField;
     }
 
     private void localization() {
@@ -244,37 +273,41 @@ public class MainWindow extends JFrame {
     }
 
     private void buildWindow() {
-        setSize(1150, 500);
+        setSize(1400, 600);
         add(MainPanel);
         setVisible(true);
     }
 
     private void setResult(int[] result) {
-        resultsLabel.setVisible(true);
-        resultFurnLabel1.setVisible(true);
-        resultFurnLabel2.setVisible(true);
-        resultFurnLabel3.setVisible(true);
-        resultFurnLabel4.setVisible(true);
-        resultFurnLabel5.setVisible(true);
-        resultFurnLabel6.setVisible(true);
-        resultFurnLabel7.setVisible(true);
-        resultFurnLabel8.setVisible(true);
-        resultLabel1.setVisible(true);
         resultLabel1.setText(String.valueOf(result[0]));
-        resultLabel2.setVisible(true);
         resultLabel2.setText(String.valueOf(result[1]));
-        resultLabel3.setVisible(true);
         resultLabel3.setText(String.valueOf(result[2]));
-        resultLabel4.setVisible(true);
         resultLabel4.setText(String.valueOf(result[3]));
-        resultLabel5.setVisible(true);
         resultLabel5.setText(String.valueOf(result[4]));
-        resultLabel6.setVisible(true);
         resultLabel6.setText(String.valueOf(result[5]));
-        resultLabel7.setVisible(true);
         resultLabel7.setText(String.valueOf(result[6]));
-        resultLabel8.setVisible(true);
         resultLabel8.setText(String.valueOf(result[7]));
+        resultsLabelVisibility(true);
+    }
+
+    private void resultsLabelVisibility(Boolean visibility) {
+        resultsLabel.setVisible(visibility);
+        resultFurnLabel1.setVisible(visibility);
+        resultFurnLabel2.setVisible(visibility);
+        resultFurnLabel3.setVisible(visibility);
+        resultFurnLabel4.setVisible(visibility);
+        resultFurnLabel5.setVisible(visibility);
+        resultFurnLabel6.setVisible(visibility);
+        resultFurnLabel7.setVisible(visibility);
+        resultFurnLabel8.setVisible(visibility);
+        resultLabel1.setVisible(visibility);
+        resultLabel2.setVisible(visibility);
+        resultLabel3.setVisible(visibility);
+        resultLabel4.setVisible(visibility);
+        resultLabel5.setVisible(visibility);
+        resultLabel6.setVisible(visibility);
+        resultLabel7.setVisible(visibility);
+        resultLabel8.setVisible(visibility);
     }
 
     private boolean savedFileExists() {
@@ -533,9 +566,13 @@ public class MainWindow extends JFrame {
         JMenuItem openItem = new JMenuItem(locale.getString("open"));
         JMenuItem saveItem = new JMenuItem(locale.getString("save_file"));
         JMenuItem closeItem = new JMenuItem(locale.getString("close"));
+        JMenuItem helpItem = new JMenuItem(locale.getString("help"));
+        JMenuItem aboutItem = new JMenuItem(locale.getString("about"));
         tabMenu.add(openItem);
         tabMenu.add(saveItem);
         tabMenu.add(closeItem);
+        tabMenu.add(helpItem);
+        tabMenu.add(aboutItem);
 
         // add menus to menubar
         menuBar.add(tabMenu);
@@ -552,6 +589,16 @@ public class MainWindow extends JFrame {
             saveData.openItemAction();
             setDefaultDataToFurnaces(currentFurnace);
         });
+
+        helpItem.addActionListener(e -> {
+            try {
+                Desktop.getDesktop().open(new File("./src/help.chm"));
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
+
+        aboutItem.addActionListener(e -> JOptionPane.showMessageDialog(MainPanel, locale.getString("aboutText")));
     }
 
     class RadioButtonListener implements ActionListener {
@@ -600,24 +647,15 @@ public class MainWindow extends JFrame {
 
         double[][] array = DefaultData.getDefaultArray();
 
-        array[currentFurnaceIndex][0] = Double.valueOf(vBazovomPeriodeTextField.getText());
-        array[currentFurnaceIndex][1] = Double.valueOf(minTextField.getText());
-        array[currentFurnaceIndex][2] = Double.valueOf(maxTextField.getText());
-        array[currentFurnaceIndex][3] = Double.valueOf(rashodKoksaTextField.getText());
-        array[currentFurnaceIndex][4] = Double.valueOf(ekvZameniTextField.getText());
-        array[currentFurnaceIndex][5] = Double.valueOf(proizvChugTextField.getText());
-        array[currentFurnaceIndex][6] = Double.valueOf(seraVChuguneTextField.getText());
-        array[currentFurnaceIndex][7] = Double.valueOf(minSeraTextField.getText());
-        array[currentFurnaceIndex][8] = Double.valueOf(maxSeraTextField.getText());
-        array[currentFurnaceIndex][9] = Double.valueOf(izmPrChugPGTextField.getText());
-        array[currentFurnaceIndex][10] = Double.valueOf(izmPrChugKoksTextField.getText());
-        array[currentFurnaceIndex][11] = Double.valueOf(izmSeraPGTextField.getText());
-        array[currentFurnaceIndex][12] = Double.valueOf(izmSeraKoksTextField.getText());
-        array[currentFurnaceIndex][13] = Double.valueOf(izmSeraPrTextField.getText());
-
-        array[8][0] = Double.valueOf(rezervTextField.getText());
-        array[8][1] = Double.valueOf(zapasTextField.getText());
-        array[8][2] = Double.valueOf(trebChugTextField.getText());
+        int j = 0;
+        for (int i = 0; i < jTextFields.length; i++) {
+            if (i < 14) {
+                array[currentFurnaceIndex][i] = Double.valueOf(jTextFields[i].getText());
+            } else {
+                array[8][j] = Double.valueOf(jTextFields[i].getText());
+                j++;
+            }
+        }
 
         DefaultData.setDefaultArray(array);
     }
@@ -626,25 +664,44 @@ public class MainWindow extends JFrame {
         int currentFurnaceIndex = furnaceNumber - 1;
 
         double[][] array = DefaultData.getDefaultArray();
-        vBazovomPeriodeTextField.setText(String.valueOf(array[currentFurnaceIndex][0]));
-        minTextField.setText(String.valueOf(array[currentFurnaceIndex][1]));
-        maxTextField.setText(String.valueOf(array[currentFurnaceIndex][2]));
-        rashodKoksaTextField.setText(String.valueOf(array[currentFurnaceIndex][3]));
-        ekvZameniTextField.setText(String.valueOf(array[currentFurnaceIndex][4]));
-        proizvChugTextField.setText(String.valueOf(array[currentFurnaceIndex][5]));
-        seraVChuguneTextField.setText(String.valueOf(array[currentFurnaceIndex][6]));
-        minSeraTextField.setText(String.valueOf(array[currentFurnaceIndex][7]));
-        maxSeraTextField.setText(String.valueOf(array[currentFurnaceIndex][8]));
-        izmPrChugPGTextField.setText(String.valueOf(array[currentFurnaceIndex][9]));
-        izmPrChugKoksTextField.setText(String.valueOf(array[currentFurnaceIndex][10]));
-        izmSeraPGTextField.setText(String.valueOf(array[currentFurnaceIndex][11]));
-        izmSeraKoksTextField.setText(String.valueOf(array[currentFurnaceIndex][12]));
-        izmSeraPrTextField.setText(String.valueOf(array[currentFurnaceIndex][13]));
 
-        rezervTextField.setText(String.valueOf(array[8][0]));
-        zapasTextField.setText(String.valueOf(array[8][1]));
-        trebChugTextField.setText(String.valueOf(array[8][2]));
+        int j = 0;
+        for (int i = 0; i < jTextFields.length; i++) {
+            if (i < 14) {
+                jTextFields[i].setText(String.valueOf(array[currentFurnaceIndex][i]));
+            } else {
+                jTextFields[i].setText(String.valueOf(array[8][j]));
+                j++;
+            }
+        }
 
         furnaceLabel.setText(locale.getString("furnaceLabel") + " " + furnaceNumber);
+    }
+
+    private void onTextChangedListener() {
+        for (JTextField jTextField : jTextFields) {
+            jTextField.getDocument().addDocumentListener(new DocumentListener() {
+                @Override
+                public void insertUpdate(DocumentEvent e) {
+                    resultsLabelVisibility(false);
+                    diagramItem.setEnabled(false);
+                    reportItem.setEnabled(false);
+                }
+
+                @Override
+                public void removeUpdate(DocumentEvent e) {
+                    resultsLabelVisibility(false);
+                    diagramItem.setEnabled(false);
+                    reportItem.setEnabled(false);
+                }
+
+                @Override
+                public void changedUpdate(DocumentEvent e) {
+                    resultsLabelVisibility(false);
+                    diagramItem.setEnabled(false);
+                    reportItem.setEnabled(false);
+                }
+            });
+        }
     }
 }
