@@ -683,25 +683,44 @@ public class MainWindow extends JFrame {
             jTextField.getDocument().addDocumentListener(new DocumentListener() {
                 @Override
                 public void insertUpdate(DocumentEvent e) {
-                    resultsLabelVisibility(false);
-                    diagramItem.setEnabled(false);
-                    reportItem.setEnabled(false);
+                    checkField(jTextField);
                 }
 
                 @Override
                 public void removeUpdate(DocumentEvent e) {
-                    resultsLabelVisibility(false);
-                    diagramItem.setEnabled(false);
-                    reportItem.setEnabled(false);
+                    checkField(jTextField);
                 }
 
                 @Override
                 public void changedUpdate(DocumentEvent e) {
-                    resultsLabelVisibility(false);
-                    diagramItem.setEnabled(false);
-                    reportItem.setEnabled(false);
+                    checkField(jTextField);
                 }
             });
         }
+    }
+
+    private void checkField(JTextField jTextField) {
+        resultsLabelVisibility(false);
+        diagramItem.setEnabled(false);
+        reportItem.setEnabled(false);
+        double doubleValue = 0;
+        int intValue = 0;
+        Boolean isDoubleOK = false;
+        try {
+            doubleValue = Double.valueOf(jTextField.getText());
+            jTextField.setBackground(new Color(255, 255, 255));
+            isDoubleOK = true;
+        } catch (Exception e1) {
+            jTextField.setBackground(new Color(206, 23, 0));
+        }
+        if (!isDoubleOK) {
+            try {
+                intValue = Integer.valueOf(jTextField.getText());
+                jTextField.setBackground(new Color(255, 255, 255));
+            } catch (Exception e1) {
+                jTextField.setBackground(new Color(206, 23, 0));
+            }
+        }
+        System.out.println(intValue != 0 ? intValue : doubleValue);
     }
 }

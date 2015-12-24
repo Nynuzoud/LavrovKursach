@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jasper-compiler-jdt-5.5.15">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/jasper-compiler-jdt-5.5.15.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
