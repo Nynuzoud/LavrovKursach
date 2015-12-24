@@ -590,6 +590,12 @@ public class MainWindow extends JFrame {
             setDefaultDataToFurnaces(currentFurnace);
         });
 
+        closeItem.addActionListener(e -> {
+            savePreviousFurnaceData(currentFurnace);
+            saveData.saveItemAction();
+            System.exit(0);
+        });
+
         helpItem.addActionListener(e -> {
             try {
                 Desktop.getDesktop().open(new File(Preferences.getPreferences.HELP_DESTINATION));
