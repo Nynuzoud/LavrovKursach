@@ -55,7 +55,6 @@ public class Report {
         TextColumnBuilder<String> itemsColumn = col.column(locale.getString("ishData"), "items", DynamicReports.type.stringType());
         TextColumnBuilder<String> countColumn = col.column(locale.getString("value"), "count", DynamicReports.type.stringType());
         try {
-            System.out.println("1");
             reportBuilder
                     .setColumnTitleStyle(columnTitleStyle)
                     .setColumnStyle(columnStyle)
@@ -65,7 +64,6 @@ public class Report {
                     .groupBy(furnaceColumn)
                     .setDataSource(getDataSource(isSelectedCheckBoxes))
                     .show(false);
-            System.out.println("2");
         } catch (DRException e) {
             e.printStackTrace();
         }
@@ -162,7 +160,6 @@ public class Report {
                     locale.getString("m3chas"),
                     String.valueOf(resultData[i]));
         }
-        System.out.println("3");
         return drDataSource;
     }
 }
