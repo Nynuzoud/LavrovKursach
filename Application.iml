@@ -38,7 +38,10 @@
     <orderEntry type="library" name="commons-beanutils-1.9.0" level="project" />
     <orderEntry type="library" name="commons-logging-1.1.1" level="project" />
     <orderEntry type="library" name="commons-collections-3.2.1" level="project" />
-    <orderEntry type="library" name="jasperreports-6.1.1" level="project" />
     <orderEntry type="library" name="jasper-compiler-jdt-5.5.15" level="project" />
+    <orderEntry type="library" name="jasperreports-6.1.1" level="project" />
+    <orderEntry type="library" name="dynamicreports-adhoc-4.0.2" level="project" />
+    <orderEntry type="library" name="commons-codec-1.5" level="project" />
+    <orderEntry type="library" name="log4j-1.2.14" level="project" />
   </component>
 </module>
